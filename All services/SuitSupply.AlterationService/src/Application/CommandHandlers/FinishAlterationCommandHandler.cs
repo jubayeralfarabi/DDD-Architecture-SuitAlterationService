@@ -14,9 +14,9 @@
     /// <summary>
     /// Responsible to handle Sample Creation Command request.
     /// </summary>
-    public class DoPaymentCommandHandler : ICommandHandlerAsync<DoPaymentCommand>
+    public class FinishAlterationCommandHandler : ICommandHandlerAsync<FinishAlterationCommand>
     {
-        private ILogger<DoPaymentCommandHandler> logger;
+        private ILogger<FinishAlterationCommandHandler> logger;
         private IAggregateRepository<AlterationAggregate> aggregateRepository;
 
         /// <summary>
@@ -24,8 +24,8 @@
         /// </summary>
         /// <param name="logger">Logger instance.</param>
         /// <param name="aggregateRepository"><see cref="IAggregateRepository."/>Aggregate Repository.</param>
-        public DoPaymentCommandHandler(
-            ILogger<DoPaymentCommandHandler> logger,
+        public FinishAlterationCommandHandler(
+            ILogger<FinishAlterationCommandHandler> logger,
             IAggregateRepository<AlterationAggregate> aggregateRepository)
         {
             this.logger = logger;
@@ -35,11 +35,11 @@
         /// <summary>
         /// Handler.
         /// </summary>
-        /// <param name="command"><see cref="CreateAlterationCommand"/>.</param>
+        /// <param name="command"><see cref="FinishAlterationCommand"/>.</param>
         /// <returns>Task of <see cref="CommandResponse"/>.</returns>
-        public async Task<CommandResponse> HandleAsync(DoPaymentCommand command)
+        public async Task<CommandResponse> HandleAsync(FinishAlterationCommand command)
         {
-            this.logger.LogInformation($"DoPaymentCommandHandler START with CorrelationId: '{command.CorrelationId}'");
+            this.logger.LogInformation($"FinishAlterationCommandHandler START with CorrelationId: '{command.CorrelationId}'");
 
             CommandResponse response = new CommandResponse();
 
@@ -57,12 +57,12 @@
             }
             catch (Exception ex)
             {
-                this.logger.LogError(ex, $"Exception: DoPaymentCommandHandler with CorrelationId: '{command.CorrelationId}', for alterationid {command.AlterationId}, Message {ex.Message}");
+                this.logger.LogError(ex, $"Exception: FinishAlterationCommandHandler with CorrelationId: '{command.CorrelationId}', for alterationid {command.AlterationId}, Message {ex.Message}");
 
                 response.ValidationResult.AddError(ex.Message);
             }
 
-            this.logger.LogInformation($"DoPaymentCommandHandler END with CorrelationId: '{command.CorrelationId}'");
+            this.logger.LogInformation($"FinishAlterationCommandHandler END with CorrelationId: '{command.CorrelationId}'");
 
             return response;
         }

@@ -2,10 +2,9 @@
 {
     public enum AlterationStatusEnum
     {
-        Default,
-        SleeveLeft,
-        SleeveRight,
-        TrouserLeft,
-        TrouserRight,
+        UnPaid,
+        Paid,
+        TailorProcessing,
+        Finished
     }
 }

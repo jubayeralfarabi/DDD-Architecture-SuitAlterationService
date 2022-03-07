@@ -1,6 +1,7 @@
 ﻿namespace SuitSupply.AlterationService.Application.Commands
 {
     using SuitSupply.Platform.Infrastructure.Core.Commands;
+    using System;
 
     /// <summary>
     /// StartProcessing Alteration.
@@ -10,6 +11,6 @@
         /// <summary>
         /// Gets or sets multiple shop record into single command.
         /// </summary>
-        public string AlterationId { get; set; }
+        public Guid AlterationId { get; set; }
     }
 }

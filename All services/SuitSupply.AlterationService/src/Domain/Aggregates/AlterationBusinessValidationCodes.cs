@@ -18,5 +18,7 @@ namespace SuitSupply.AlterationService.Domain.Aggregates
 
         public const int InvalidAlterationValue = 00100011;
         public const int InvalidAlterationType = 00100012;
+        public const int AlreadyPaid = 00100013;
+        public const int PaymentRequired = 00100014;
     }
 }

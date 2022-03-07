@@ -14,18 +14,18 @@
     /// <summary>
     /// Responsible to handle Sample Creation Command request.
     /// </summary>
-    public class DoPaymentCommandHandler : ICommandHandlerAsync<DoPaymentCommand>
+    public class StartProcessingAlterationCommandHandler : ICommandHandlerAsync<StartProcessingAlterationCommand>
     {
-        private ILogger<DoPaymentCommandHandler> logger;
+        private ILogger<StartProcessingAlterationCommandHandler> logger;
         private IAggregateRepository<AlterationAggregate> aggregateRepository;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="CreateAlterationCommandHandler"/> class.
+        /// Initializes a new instance of the <see cref="StartProcessingAlterationCommandHandler"/> class.
         /// </summary>
         /// <param name="logger">Logger instance.</param>
         /// <param name="aggregateRepository"><see cref="IAggregateRepository."/>Aggregate Repository.</param>
-        public DoPaymentCommandHandler(
-            ILogger<DoPaymentCommandHandler> logger,
+        public StartProcessingAlterationCommandHandler(
+            ILogger<StartProcessingAlterationCommandHandler> logger,
             IAggregateRepository<AlterationAggregate> aggregateRepository)
         {
             this.logger = logger;
@@ -35,11 +35,11 @@
         /// <summary>
         /// Handler.
         /// </summary>
-        /// <param name="command"><see cref="CreateAlterationCommand"/>.</param>
+        /// <param name="command"><see cref="StartProcessingAlterationCommand"/>.</param>
         /// <returns>Task of <see cref="CommandResponse"/>.</returns>
-        public async Task<CommandResponse> HandleAsync(DoPaymentCommand command)
+        public async Task<CommandResponse> HandleAsync(StartProcessingAlterationCommand command)
         {
-            this.logger.LogInformation($"DoPaymentCommandHandler START with CorrelationId: '{command.CorrelationId}'");
+            this.logger.LogInformation($"StartProcessingAlterationCommandHandler START with CorrelationId: '{command.CorrelationId}'");
 
             CommandResponse response = new CommandResponse();
 
@@ -47,7 +47,7 @@
             {
                 AlterationAggregate alteration = this.aggregateRepository.GetById(command.AlterationId);
 
-                alteration.DoPayment(command.AlterationId, command.CorrelationId, command.UserContext);
+                alteration.StartProcessing(command.AlterationId, command.CorrelationId, command.UserContext);
 
                 await this.aggregateRepository.UpdateAsync(alteration).ConfigureAwait(false);
 
@@ -57,12 +57,12 @@
             }
             catch (Exception ex)
             {
-                this.logger.LogError(ex, $"Exception: DoPaymentCommandHandler with CorrelationId: '{command.CorrelationId}', for alterationid {command.AlterationId}, Message {ex.Message}");
+                this.logger.LogError(ex, $"Exception: StartProcessingAlterationCommandHandler with CorrelationId: '{command.CorrelationId}', for alterationid {command.AlterationId}, Message {ex.Message}");
 
                 response.ValidationResult.AddError(ex.Message);
             }
 
-            this.logger.LogInformation($"DoPaymentCommandHandler END with CorrelationId: '{command.CorrelationId}'");
+            this.logger.LogInformation($"StartProcessingAlterationCommandHandler END with CorrelationId: '{command.CorrelationId}'");
 
             return response;
         }

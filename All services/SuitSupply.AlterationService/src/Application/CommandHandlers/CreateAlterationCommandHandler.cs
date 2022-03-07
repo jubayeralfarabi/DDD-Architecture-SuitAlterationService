@@ -47,7 +47,7 @@
             {
                 AlterationAggregate alteration = new AlterationAggregate();
 
-                alteration.CreateAlteration(command.AlterationId, command.AlterationDetails, command.CorrelationId, command.UserContext);
+                alteration.CreateAlteration(command.AlterationId, command.AlterationDetails, command.CustomerId, command.CorrelationId, command.UserContext);
 
                 await this.aggregateRepository.SaveAsync(alteration).ConfigureAwait(false);
 

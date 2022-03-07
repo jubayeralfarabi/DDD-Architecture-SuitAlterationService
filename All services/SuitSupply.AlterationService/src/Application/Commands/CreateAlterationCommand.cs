@@ -17,5 +17,7 @@
         /// Gets or sets multiple Alteration details.
         /// </summary>
         public AlterationDetails[] AlterationDetails { get; set; }
+
+        public string CustomerId { get; set; }
     }
 }
