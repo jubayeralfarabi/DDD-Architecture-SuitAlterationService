@@ -46,6 +46,11 @@ namespace SuitSupply.Platform.Infrastructure.Domain
             this.Id = id;
         }
 
+        public void SetId(Guid id)
+        {
+            this.Id = id;
+        }
+
         public virtual void SetDefaultValue(UserContext userContext)
         {
             DateTime currentTime = DateTime.UtcNow;
