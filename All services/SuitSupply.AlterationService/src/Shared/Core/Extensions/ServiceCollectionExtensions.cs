@@ -5,8 +5,11 @@
 namespace SuitSupply.Platform.Infrastructure.Extensions
 {
     using System;
+    using System.Linq;
     using Microsoft.Extensions.DependencyInjection;
+    using SuitSupply.Platform.Infrastructure.Common.Security;
     using SuitSupply.Platform.Infrastructure.Core;
+    using SuitSupply.Platform.Infrastructure.Core.Accessors;
     using SuitSupply.Platform.Infrastructure.Core.Bus;
     using SuitSupply.Platform.Infrastructure.Core.Commands;
     using SuitSupply.Platform.Infrastructure.Core.Dependencies;
@@ -25,13 +28,24 @@ namespace SuitSupply.Platform.Infrastructure.Extensions
                 throw new ArgumentNullException(nameof(services));
             }
 
+            if (services.All(x => x.ServiceType != typeof(IUserContextProvider)))
+            {
+                services.AddSingleton<IContextAccessor, ContextAccessor>();
+                services.AddSingleton<IUserContextProvider, UserContextProvider>();
+            }
+            services.AddSingleton<UserContext>(p => new UserContext
+            {
+                UserId = Guid.NewGuid(),
+                Roles = new string[] { "admin"},
+                UserName = "DefaultAdmin"
+            });
             services.AddScoped<IResolver, Resolver>();
             services.AddScoped<IHandlerResolver, HandlerResolver>();
             services.AddScoped<IDispatcher, Dispatcher>();
 
             services.AddScoped<IDomainEventProcessor, DomainEventProcessor>();
             services.AddScoped(typeof(IDomainRepository<>), typeof(DomainRepository<>));
-            services.AddSingleton<IBusMessageDispatcher, BusMessageDispatcher>();
+            services.AddScoped<IBusMessageDispatcher, BusMessageDispatcher>();
             services.AddScoped<ICommandSender, CommandSender>();
             services.AddScoped<IEventPublisher, EventPublisher>();
             services.AddScoped<IQueryProcessor, QueryProcessor>();

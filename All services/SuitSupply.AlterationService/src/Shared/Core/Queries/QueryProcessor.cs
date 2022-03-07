@@ -17,18 +17,18 @@ namespace SuitSupply.Platform.Infrastructure.Core.Queries
     {
         private readonly IHandlerResolver handlerResolver;
         private readonly ILogger logger;
-        private readonly IValidationService validationService;
+        //private readonly IValidationService validationService;
         private readonly IOptions<ValidationOptions> validationOptions;
 
         public QueryProcessor(
             IHandlerResolver handlerResolver,
-            IValidationService validationService,
+            //IValidationService validationService,
             IOptions<ValidationOptions> validationOptions,
             ILogger<QueryProcessor> logger)
         {
             this.handlerResolver = handlerResolver;
             this.logger = logger;
-            this.validationService = validationService;
+            //this.validationService = validationService;
             this.validationOptions = validationOptions;
         }
 
@@ -48,7 +48,7 @@ namespace SuitSupply.Platform.Infrastructure.Core.Queries
 
             if (this.validationOptions.Value.ValidateAllQuery)
             {
-                queryResponse.ValidationResult = await this.validationService.ValidateQueryAsync(query).ConfigureAwait(false);
+                //queryResponse.ValidationResult = await this.validationService.ValidateQueryAsync(query).ConfigureAwait(false);
                 if (queryResponse.ValidationResult != null && !queryResponse.ValidationResult.IsValid)
                 {
                     return queryResponse;
@@ -88,7 +88,7 @@ namespace SuitSupply.Platform.Infrastructure.Core.Queries
 
             if (this.validationOptions.Value.ValidateAllQuery)
             {
-                this.validationService.ValidateQuery(query);
+                //this.validationService.ValidateQuery(query);
             }
 
             var queryType = query.GetType();
