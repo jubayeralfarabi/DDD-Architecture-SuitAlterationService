@@ -1,7 +1,5 @@
 using SuitSupply.AlterationService.Infrastructure.ServiceBus;
 using SuitSupply.Platform.Infrastructure.Extensions;
-using SuitSupply.Platform.Infrastructure.LogConfiguration.SerilogConfiguration;
-
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +10,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddCore();
+builder.Services.AddApplicationInsightsTelemetry();
 
 
 IConfiguration configuration = new ConfigurationBuilder()
