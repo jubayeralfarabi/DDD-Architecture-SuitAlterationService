@@ -14,7 +14,7 @@
     [Table("AlterationAggregate")]
     public class AlterationAggregate : AggregateRoot
     {
-        public AlterationDetails[] AlterationDetails { get; set; }
+        public ICollection<AlterationDetails> AlterationDetails { get; set; }
 
         public AlterationStatusEnum Status { get; set; }
 
@@ -122,7 +122,7 @@
         public void FinishAlteration(Guid alterationId, Guid coorelationId)
         {
             List<EventMessage> errors = new List<EventMessage>() { };
-            if (this.Status != AlterationStatusEnum.Paid) errors.Add(new EventMessage(AlterationBusinessValidationCodes.PaymentRequired, EventMessageType.Error, new object[] { nameof(alterationId), "Alteration required payment." }));
+            if (this.Status == AlterationStatusEnum.UnPaid) errors.Add(new EventMessage(AlterationBusinessValidationCodes.PaymentRequired, EventMessageType.Error, new object[] { nameof(alterationId), "Alteration required payment." }));
 
             if (errors.Count > 0)
             {

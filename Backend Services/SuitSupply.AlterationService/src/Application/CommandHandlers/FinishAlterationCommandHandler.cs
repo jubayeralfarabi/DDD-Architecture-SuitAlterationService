@@ -34,7 +34,7 @@
             {
                 AlterationAggregate alteration = this.aggregateRepository.GetById(command.AlterationId);
 
-                alteration.CompletePayment(command.AlterationId, command.CorrelationId);
+                alteration.FinishAlteration(command.AlterationId, command.CorrelationId);
 
                 await this.aggregateRepository.UpdateAsync(alteration).ConfigureAwait(false);
 
