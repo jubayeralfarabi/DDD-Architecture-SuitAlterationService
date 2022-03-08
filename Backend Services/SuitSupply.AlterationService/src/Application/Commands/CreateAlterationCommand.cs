@@ -1,6 +1,6 @@
 ﻿namespace SuitSupply.AlterationService.Application.Commands
 {
-    using SuitSupply.AlterationService.Domain.ValueObjects;
+    using SuitSupply.AlterationService.Domain.Entities;
     using SuitSupply.Platform.Infrastructure.Core.Commands;
     using System;
 

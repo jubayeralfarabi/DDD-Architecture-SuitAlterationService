@@ -14,14 +14,15 @@ IConfiguration configuration = new ConfigurationBuilder()
                             .AddJsonFile("appsettings.json")
                             .Build();
 builder.Services.Configure<BusSettings>(configuration.GetSection("BusSettings"));
-
+builder.Services.AddScoped<IBusMessagePublisher, BusMessagePublisher>();
 var app = builder.Build();
 
+app.UseSwagger();
+app.UseSwaggerUI();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+
 }
 
 app.UseHttpsRedirection();

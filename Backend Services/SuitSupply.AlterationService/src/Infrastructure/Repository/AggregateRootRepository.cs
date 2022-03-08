@@ -1,8 +1,4 @@
-﻿// <copyright file="AggregateRootRepository.cs" company="PlaceholderCompany">
-// Copyright (c) PlaceholderCompany. All rights reserved.
-// </copyright>
-
-namespace SuitSupply.Platform.Infrastructure.Core.Domain
+﻿namespace SuitSupply.Platform.Infrastructure.Core.Domain
 {
     using SuitSupply.Infrastructure.Repository.RDBRepository;
     using SuitSupply.Platform.Infrastructure.Core.Events;

@@ -1,7 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using SuitSupply.AlterationService.Domain.ValueObjects;
 using System.ComponentModel.DataAnnotations;
 
-namespace SuitSupply.AlterationService.Domain.ValueObjects
+namespace SuitSupply.AlterationService.Domain.Entities
 {
     
     public class AlterationDetails
@@ -9,7 +10,7 @@ namespace SuitSupply.AlterationService.Domain.ValueObjects
         [Key]
         public int Id { get; set; }
 
-        public string AlterationName { get; set; }
+        public AlterationTypeEnum AlterationName { get; set; }
 
         public int AlterationValue { get; set; }
     }

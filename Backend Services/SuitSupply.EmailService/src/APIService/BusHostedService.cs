@@ -28,11 +28,18 @@ public class BusHostedService : IHostedService
         return args.CompleteMessageAsync(args.Message);
     }
 
-   
+    public Task ErrorHandler(ProcessErrorEventArgs args)
+    {
+        Console.WriteLine(args.Exception.ToString());
+        return Task.CompletedTask;
+    }
+
+
     public async Task StartAsync(CancellationToken cancellationToken)
     {
 
           this.processor.ProcessMessageAsync += MessageHandler;
+          this.processor.ProcessErrorAsync += ErrorHandler;
 
           await this.processor.StartProcessingAsync();
     }
