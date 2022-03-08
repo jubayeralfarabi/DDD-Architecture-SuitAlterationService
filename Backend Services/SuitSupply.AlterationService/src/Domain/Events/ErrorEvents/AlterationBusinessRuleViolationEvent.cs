@@ -4,7 +4,6 @@
     using FluentValidation.Results;
     using Newtonsoft.Json;
     using SuitSupply.Platform.Infrastructure.Core.Events;
-    using SuitSupply.Platform.Infrastructure.Core.Models;
     using SuitSupply.Platform.Infrastructure.Domain;
 
     /// <summary>Event for alteration business violation rule.</summary>

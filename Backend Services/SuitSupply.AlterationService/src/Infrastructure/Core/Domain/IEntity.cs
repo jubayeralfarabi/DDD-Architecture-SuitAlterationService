@@ -10,22 +10,8 @@ namespace SuitSupply.Platform.Infrastructure.Domain
     {
         Guid Id { get; }
 
-        Guid CreatedBy { get; }
-
         DateTime CreatedDate { get; }
 
-        string Language { get; }
-
         DateTime LastUpdatedDate { get; }
-
-        Guid LastUpdatedBy { get; }
-
-        Guid TenantId { get; }
-
-        string[] Tags { get; }
-
-        Guid VerticalId { get; }
-
-        bool IsMarkedToDelete { get; }
     }
 }

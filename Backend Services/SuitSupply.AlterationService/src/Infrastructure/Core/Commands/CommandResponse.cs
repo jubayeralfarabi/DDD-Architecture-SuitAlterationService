@@ -21,7 +21,5 @@
         public ValidationResponse ValidationResult { get; set; }
 
         public object Result { get; set; }
-
-        public IEnumerable<IEvent> Events { get; set; }
     }
 }

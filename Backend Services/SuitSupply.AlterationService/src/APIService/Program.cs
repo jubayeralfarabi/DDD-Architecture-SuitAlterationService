@@ -1,5 +1,16 @@
+using Microsoft.EntityFrameworkCore;
+using SuitSupply.Infrastructure.Repository.RDBRepository;
+using SuitSupply.Infrastructure.Repository.RDBRepository.DbContexts;
 using SuitSupply.AlterationService.Infrastructure.ServiceBus;
 using SuitSupply.Platform.Infrastructure.Extensions;
+using SuitSupply.Platform.Infrastructure.Core.Domain;
+using SuitSupply.AlterationService.Domain;
+using SuitSupply.AlterationService.Application.CommandHandlers;
+using SuitSupply.AlterationService.Application.Commands;
+using SuitSupply.Platform.Infrastructure.Core.Commands;
+using SuitSupply.AlterationService.Domain.Events;
+using SuitSupply.Platform.Infrastructure.Core.Events;
+using SuitSupply.AlterationService.Read.EventHandlers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,6 +29,16 @@ IConfiguration configuration = new ConfigurationBuilder()
                             .Build();
 builder.Services.Configure<BusSettings>(configuration.GetSection("BusSettings"));
 
+builder.Services.AddDbContext<AlterationDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("AlterationDbContext")));
+builder.Services.AddScoped<DbContext, AlterationDbContext>();
+builder.Services.AddScoped<IAggregateRepository<AlterationAggregate>, AggregateRepository<AlterationAggregate>>();
+
+builder.Services.AddScoped<ICommandHandlerAsync<CreateAlterationCommand>, CreateAlterationCommandHandler>();
+builder.Services.AddScoped<ICommandHandlerAsync<CompletePaymentCommand>, CompletePaymentCommandHandler>();
+builder.Services.AddScoped<ICommandHandlerAsync<StartProcessingAlterationCommand>, StartProcessingAlterationCommandHandler>();
+builder.Services.AddScoped<ICommandHandlerAsync<FinishAlterationCommand>, FinishAlterationCommandHandler>();
+
+builder.Services.AddScoped<IEventHandlerAsync<AlterationFinishedEvent>, AlterationFinishedEventHandler>();
 
 var app = builder.Build();
 

@@ -1,7 +1,10 @@
 ﻿namespace SuitSupply.Platform.Infrastructure.Extensions
 {
     using System;
+    using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.DependencyInjection;
+    using SuitSupply.AlterationService.Infrastructure.ServiceBus;
+    using SuitSupply.Infrastructure.Repository.RDBRepository;
     using SuitSupply.Platform.Infrastructure.Core;
     using SuitSupply.Platform.Infrastructure.Core.Commands;
     using SuitSupply.Platform.Infrastructure.Core.Events;
@@ -18,6 +21,11 @@
 
             services.AddScoped<ICommandSender, CommandSender>();
             services.AddScoped<IEventPublisher, EventPublisher>();
+
+            services.AddScoped<IBusMessagePublisher, BusMessagePublisher>();
+
+            services.AddScoped<IReadWriteRepository, ReadWriteRepository<DbContext>>();
+            services.AddScoped<IReadOnlyRepository, ReadOnlyRepository<DbContext>>();
         }
     }
 }

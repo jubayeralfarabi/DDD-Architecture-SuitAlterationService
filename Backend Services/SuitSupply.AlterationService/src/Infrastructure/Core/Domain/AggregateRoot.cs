@@ -49,8 +49,6 @@
             this.events.Add(@event);
         }
 
-        /// <summary>Applies the event.</summary>
-        /// <param name="event">The event.</param>
         private void ApplyEvent(IDomainEvent @event)
         {
             MethodInfo methodInfo = this.GetType().GetMethod("Apply", BindingFlags.NonPublic | BindingFlags.Instance, null, CallingConventions.Any, new Type[] { @event.GetType() }, null);
@@ -71,6 +69,19 @@
             this.ApplyEvent(@event);
             @event.AggregateRootId = this.Id;
             @event.AggregateRootVersion = this.Version;
+            this.SetDefaultValue();
+        }
+
+        protected void AddEventOnly<T>(IDomainEvent @event)
+            where T : IAggregateRoot
+        {
+            @event.Source = typeof(T).FullName;
+            @event.TimeStamp = DateTime.UtcNow;
+            this.AddEvent(@event);
+            this.Version++;
+            @event.AggregateRootId = this.Id;
+            @event.AggregateRootVersion = this.Version;
+            this.SetDefaultValue();
         }
     }
 }

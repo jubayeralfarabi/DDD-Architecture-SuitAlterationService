@@ -9,6 +9,7 @@
     using SuitSupply.Platform.Infrastructure.Core.Domain;
     using SuitSupply.Platform.Infrastructure.Domain;
     using SuitSupply.AlterationService.Domain;
+    using SuitSupply.AlterationService.Domain.Events;
 
     public class CompletePaymentCommandHandler : ICommandHandlerAsync<CompletePaymentCommand>
     {
@@ -37,9 +38,11 @@
 
                 await this.aggregateRepository.UpdateAsync(alteration).ConfigureAwait(false);
 
-                if (alteration.Events.Any(e => e is FailedToProcessEvent)) response.ValidationResult.AddError("FailedToProcess");
-
-                response.Result = alteration.Events;
+                var error = alteration.Events.FirstOrDefault(e => e is AlterationBusinessRuleViolationEvent);
+                if (error != null)
+                {
+                    response.ValidationResult.AddError((error as AlterationBusinessRuleViolationEvent).GetMessage());
+                }
             }
             catch (Exception ex)
             {

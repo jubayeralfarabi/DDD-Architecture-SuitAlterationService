@@ -22,7 +22,7 @@
             }
 
             var handler = (IEventHandlerAsync<TEvent>) this.serviceProvider.GetService<IEventHandlerAsync<TEvent>>();
-            await handler.HandleAsync(@event);
+            if(handler!=null)await handler.HandleAsync(@event);
         }
     }
 }
