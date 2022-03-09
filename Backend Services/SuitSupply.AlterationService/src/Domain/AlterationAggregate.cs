@@ -61,7 +61,7 @@
             this.CustomerId = customerId;
             this.Status = AlterationStatusEnum.UnPaid;
 
-            this.AddEventOnly<AlterationAggregate>(new AlterationCreatedEvent(alterationId, alterationDetails, AlterationStatusEnum.UnPaid);
+            this.AddEventOnly<AlterationAggregate>(new AlterationCreatedEvent(alterationId, alterationDetails, AlterationStatusEnum.UnPaid));
         }
 
         public void CompletePayment(Guid alterationId)
