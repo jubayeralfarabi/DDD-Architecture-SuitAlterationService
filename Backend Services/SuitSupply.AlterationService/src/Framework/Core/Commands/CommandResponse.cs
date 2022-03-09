@@ -3,7 +3,7 @@
     using System.Collections.Generic;
     using SuitSupply.Platform.Infrastructure.Core.Events;
     using FluentValidation;
-    using Shohoz.Platform.Infrastructure.Core.Validation;
+    using SuitSupply.Platform.Infrastructure.Core.Validation;
 
     public class CommandResponse
     {

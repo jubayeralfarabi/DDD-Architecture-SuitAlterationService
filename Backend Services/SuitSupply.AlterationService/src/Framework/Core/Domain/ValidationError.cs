@@ -1,4 +1,4 @@
-﻿namespace Shohoz.Platform.Infrastructure.Core.Validation
+﻿namespace SuitSupply.Platform.Infrastructure.Core.Validation
 {
     using System.Collections.Generic;
     using System.Linq;

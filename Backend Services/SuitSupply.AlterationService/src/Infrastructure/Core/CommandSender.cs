@@ -1,6 +1,6 @@
 ﻿namespace SuitSupply.Platform.Infrastructure.Core.Commands
 {
-    using Shohoz.Platform.Infrastructure.Core.Validation;
+    using SuitSupply.Platform.Infrastructure.Core.Validation;
     using System;
     using System.Threading.Tasks;
 

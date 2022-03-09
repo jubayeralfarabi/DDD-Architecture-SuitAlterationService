@@ -20,7 +20,6 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddCore();
 builder.Services.AddApplicationInsightsTelemetry();
 
 
@@ -28,10 +27,8 @@ IConfiguration configuration = new ConfigurationBuilder()
                             .AddJsonFile("appsettings.json")
                             .Build();
 builder.Services.Configure<BusSettings>(configuration.GetSection("BusSettings"));
-
 builder.Services.AddDbContext<AlterationDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("AlterationDbContext")));
-builder.Services.AddScoped<DbContext, AlterationDbContext>();
-builder.Services.AddScoped<IAggregateRepository<AlterationAggregate>, AggregateRepository<AlterationAggregate>>();
+builder.Services.AddCore();
 
 builder.Services.AddScoped<ICommandHandlerAsync<CreateAlterationCommand>, CreateAlterationCommandHandler>();
 builder.Services.AddScoped<ICommandHandlerAsync<CompletePaymentCommand>, CompletePaymentCommandHandler>();
