@@ -30,7 +30,6 @@
                 aggregate.SetDefaultValue();
 
                 this.repository.Create<T>(aggregate);
-                await this.repository.SaveAsync();
             }
 
             await this.PublishEventsAsync(aggregate.Events);
@@ -43,7 +42,6 @@
             if (aggregate.Events.Any(@event => @event is FailedToProcessEvent) == false)
             {
                 this.repository.Update<T>(aggregate);
-                await this.repository.SaveAsync();
             }
 
             await this.PublishEventsAsync(aggregate.Events);

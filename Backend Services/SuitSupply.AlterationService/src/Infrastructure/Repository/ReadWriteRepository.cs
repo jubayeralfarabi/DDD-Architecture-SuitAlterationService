@@ -20,6 +20,7 @@
             where TEntity : class
         {
             this.context.Set<TEntity>().Add(entity);
+            this.context.SaveChanges();
         }
 
         public virtual void Update<TEntity>(TEntity entity, string modifiedBy = null)
@@ -27,51 +28,7 @@
         {
             this.context.Set<TEntity>().Attach(entity);
             this.context.Entry(entity).State = EntityState.Modified;
-        }
-
-        public virtual void Delete<TEntity>(object id)
-            where TEntity : class
-        {
-            TEntity entity = this.context.Set<TEntity>().Find(id);
-            this.Delete(entity);
-        }
-
-        public virtual void Delete<TEntity>(TEntity entity)
-            where TEntity : class
-        {
-            var dbSet = this.context.Set<TEntity>();
-            if (this.context.Entry(entity).State == EntityState.Detached)
-            {
-                dbSet.Attach(entity);
-            }
-
-            dbSet.Remove(entity);
-        }
-
-        public virtual void Save()
-        {
-            try
-            {
-                this.context.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        public virtual Task SaveAsync()
-        {
-            try
-            {
-                return this.context.SaveChangesAsync();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-
-            return Task.FromResult(0);
+            this.context.SaveChanges();
         }
     }
 }
