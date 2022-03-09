@@ -6,7 +6,6 @@ namespace SuitSupply.AlterationService.APIService.Controllers
     using SuitSupply.AlterationService.Application.Commands;
     using SuitSupply.Platform.Infrastructure.Core;
     using SuitSupply.Platform.Infrastructure.Core.Commands;
-    using SuitSupply.Infrastructure.Repository.RDBRepository;
 
     [ApiController]
     [Route("[controller]/[action]")]

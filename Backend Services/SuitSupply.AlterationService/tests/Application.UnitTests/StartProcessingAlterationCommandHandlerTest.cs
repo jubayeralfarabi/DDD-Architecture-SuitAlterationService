@@ -3,11 +3,8 @@ using Moq;
 using SuitSupply.AlterationService.Application.CommandHandlers;
 using SuitSupply.AlterationService.Application.Commands;
 using SuitSupply.AlterationService.Domain;
-using SuitSupply.AlterationService.Domain.Entities;
-using SuitSupply.AlterationService.Domain.ValueObjects;
 using SuitSupply.Platform.Infrastructure.Core.Commands;
 using SuitSupply.Platform.Infrastructure.Core.Domain;
-using System;
 using System.Threading.Tasks;
 using Xunit;
 
