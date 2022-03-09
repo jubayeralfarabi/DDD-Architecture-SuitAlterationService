@@ -10,7 +10,7 @@ Alteration Service : https://alterationapi.azurewebsites.net/swagger/index.html
 
 Payment Service : https://paymentapiservice.azurewebsites.net/swagger/index.html
   
-  -- Here RefId is the AlterationId while initiating the mock request. OrderId is just and Id.
+---- Here in MockOrderPaidCommand, RefId is the AlterationId and OrderId is just and Id.
 
 Email Service : https://emailapiservice.azurewebsites.net/swagger/index.html
 
