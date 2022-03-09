@@ -13,7 +13,7 @@ Payment Service : https://paymentapiservice.azurewebsites.net/swagger/index.html
 Email Service : https://emailapiservice.azurewebsites.net/swagger/index.html
 
 # Run Locally
-Please change database connection string in appsettings because the given database connection string has **IP restrictions**.  
+Please change database connection string in all appsettings because the given database connection string has **IP restrictions**.  
 
 # Overview of the application
 #### Common Folder Structure 
