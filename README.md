@@ -16,10 +16,10 @@ Please change database connection string in appsettings because the given databa
 
 # Overview of the application
 #### Common Folder Structure 
-![Common folder structure](https://user-images.githubusercontent.com/62177256/157477026-7abc662a-5248-4d43-aaf5-c5b567b91cca.PNG)
+<img src="https://user-images.githubusercontent.com/62177256/157477026-7abc662a-5248-4d43-aaf5-c5b567b91cca.PNG" width="500">
 
 #### Project Reference Diagram 
-![Project reference diagram](https://user-images.githubusercontent.com/62177256/157477116-fa7f6085-1fe0-43ce-9f84-80ce69f4141b.png)
+<img src="https://user-images.githubusercontent.com/62177256/157477116-fa7f6085-1fe0-43ce-9f84-80ce69f4141b.png" width="600">
 
 #### Business Data Flow Diagram
-![Business data flow diagram](https://user-images.githubusercontent.com/62177256/157477222-30e8c92b-9ce0-4d4a-a4cf-0d9e8d001ebd.png)
+<img src="https://user-images.githubusercontent.com/62177256/157477222-30e8c92b-9ce0-4d4a-a4cf-0d9e8d001ebd.png" width="600">
