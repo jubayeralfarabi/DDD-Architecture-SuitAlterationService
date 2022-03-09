@@ -2,7 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
     using SuitSupply.AlterationService.Domain.Aggregates;
     using SuitSupply.AlterationService.Domain.Entities;
@@ -13,11 +12,11 @@
 
     public class AlterationAggregate : AggregateRoot
     {
-        public ICollection<AlterationDetails> AlterationDetails { get; set; }
+        public ICollection<AlterationDetails> AlterationDetails { get; private  set; }
 
-        public AlterationStatusEnum Status { get; set; }
+        public AlterationStatusEnum Status { get; private set; }
 
-        public string CustomerId {get; set;}
+        public string CustomerId {get; private set;}
 
         public AlterationAggregate()
         {
@@ -62,9 +61,7 @@
             this.CustomerId = customerId;
             this.Status = AlterationStatusEnum.UnPaid;
 
-            AlterationCreatedEvent alterationCreatedEvent = new AlterationCreatedEvent(alterationId, alterationDetails, AlterationStatusEnum.UnPaid);
-            
-            this.AddEventOnly<AlterationAggregate>(alterationCreatedEvent);
+            this.AddEventOnly<AlterationAggregate>(new AlterationCreatedEvent(alterationId, alterationDetails, AlterationStatusEnum.UnPaid);
         }
 
         public void CompletePayment(Guid alterationId)
@@ -86,9 +83,7 @@
 
             this.Status = AlterationStatusEnum.Paid;
 
-            AlterationPaymentDoneEvent alterationPaymentDoneEvent = new AlterationPaymentDoneEvent(alterationId, AlterationStatusEnum.Paid);
-
-            this.AddEventOnly<AlterationAggregate>(alterationPaymentDoneEvent);
+            this.AddEventOnly<AlterationAggregate>(new AlterationPaymentDoneEvent(alterationId, AlterationStatusEnum.Paid));
         }
 
         public void StartProcessing(Guid alterationId)
@@ -110,11 +105,7 @@
 
             this.Status = AlterationStatusEnum.TailorProcessing;
 
-
-            AlterationStartedProcessingEvent alterationStartedProcessingEvent = new AlterationStartedProcessingEvent(alterationId, AlterationStatusEnum.TailorProcessing);
-
-
-            this.AddEventOnly<AlterationAggregate>(alterationStartedProcessingEvent);
+            this.AddEventOnly<AlterationAggregate>(new AlterationStartedProcessingEvent(alterationId, AlterationStatusEnum.TailorProcessing));
         }
 
         public void FinishAlteration(Guid alterationId)
@@ -136,9 +127,7 @@
 
             this.Status = AlterationStatusEnum.Finished;
 
-            AlterationFinishedEvent alterationFinishedEvent = new AlterationFinishedEvent(alterationId, AlterationStatusEnum.Finished, this.CustomerId);
-
-            this.AddEventOnly<AlterationAggregate>(alterationFinishedEvent);
+            this.AddEventOnly<AlterationAggregate>(new AlterationFinishedEvent(alterationId, AlterationStatusEnum.Finished, this.CustomerId));
         }
     }
 }
