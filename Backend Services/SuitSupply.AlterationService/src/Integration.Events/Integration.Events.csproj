@@ -9,8 +9,4 @@
 	  <RootNamespace>SuitSupply.AlterationService.Integration.Events</RootNamespace>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Framework\Framework.csproj" />
-  </ItemGroup>
-
 </Project>

@@ -1,6 +1,4 @@
-﻿using SuitSupply.Platform.Infrastructure.Core.Events;
-
-namespace SuitSupply.AlterationService.Integration.Events
+﻿namespace SuitSupply.AlterationService.Integration.Events
 {
     public class AlterationFinishedIntegrationEvent
     {

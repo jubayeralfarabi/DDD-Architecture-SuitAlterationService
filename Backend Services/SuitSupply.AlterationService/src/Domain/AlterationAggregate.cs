@@ -27,8 +27,8 @@
         {
             List<EventMessage> businessRuleViotations = new List<EventMessage>() { };
             if (alterationId == Guid.Empty) businessRuleViotations.Add(new EventMessage(AlterationBusinessValidationCodes.PropertyIsNullEmpty, EventMessageType.Error, new object[] { nameof(alterationId), "Invalid alteration id."}));
-            if (alterationDetails.Length == 0) businessRuleViotations.Add(new EventMessage(AlterationBusinessValidationCodes.ArrayMustHaveAnElement, EventMessageType.Error, new object[] { nameof(alterationDetails), "alteration details must have value." }));
-            if (alterationDetails.Length > 0)
+            if (alterationDetails == null || !alterationDetails.Any()) businessRuleViotations.Add(new EventMessage(AlterationBusinessValidationCodes.ArrayMustHaveAnElement, EventMessageType.Error, new object[] { nameof(alterationDetails), "alteration details must have value." }));
+            if (alterationDetails != null && alterationDetails.Any())
             {
                 alterationDetails.ToList().ForEach(a =>
                 {
@@ -42,6 +42,8 @@
                     }
                 });
             }
+            if (string.IsNullOrEmpty(customerId)) businessRuleViotations.Add(new EventMessage(AlterationBusinessValidationCodes.PropertyIsNullEmpty, EventMessageType.Error, new object[] { nameof(alterationId), "Invalid customer id." }));
+
 
             if (businessRuleViotations.Count>0)
             {
