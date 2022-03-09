@@ -4,6 +4,7 @@ using Microsoft.Extensions.Logging;
 using SuitSupply.AlterationService.Application.Commands;
 using SuitSupply.Platform.Infrastructure.Core;
 using SuitSupply.PaymentService.Integration.Events;
+using Newtonsoft.Json;
 
 namespace SuitSupply.AlterationService.Integration.AzureFunc
 {
@@ -18,8 +19,9 @@ namespace SuitSupply.AlterationService.Integration.AzureFunc
         }
 
         [FunctionName("OrderPaidEventHandler")]
-        public Task Run([ServiceBusTrigger("order-integration", "alteration-orderPaidEventHandler", Connection = "BusConnectionString")] OrderPaidIntegrationEvent @event)
+        public Task Run([ServiceBusTrigger("order-integration", "alteration-orderPaidEventHandler", Connection = "BusConnectionString")] string message)
         {
+            var @event = JsonConvert.DeserializeObject<OrderPaidIntegrationEvent>(message);
             this.logger.LogInformation($"Received order paid event from az bus");
             return this.dispatcher.SendAsync(new CompletePaymentCommand { AlterationId = @event.RefId });
         }

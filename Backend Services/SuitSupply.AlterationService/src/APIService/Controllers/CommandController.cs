@@ -39,25 +39,6 @@ namespace SuitSupply.AlterationService.APIService.Controllers
         }
 
         /// <summary>
-        /// API to complete payment for alteration.
-        /// </summary>
-        /// <param name="command"><see cref="DoPayment"/>.</param>
-        /// <returns>A <see cref="Task{TResult}"/> representing the result of the asynchronous operation.</returns>
-        [HttpPost]
-        public async Task<IActionResult> CompletePayment([FromBody] CompletePaymentCommand command)
-        {
-            CommandResponse response = await this.dispatcher.SendAsync(command).ConfigureAwait(false);
-
-            if (!response.ValidationResult.IsValid)
-            {
-                return BadRequest(response);
-            }
-
-            return Ok(response);
-
-        }
-
-        /// <summary>
         /// API to start processing Alteration.
         /// </summary>
         /// <param name="command"><see cref="StartProcessingAlterationCommand"/>.</param>
