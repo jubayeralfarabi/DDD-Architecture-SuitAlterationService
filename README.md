@@ -9,6 +9,8 @@ Applications are hosted in Azure
 Alteration Service : https://alterationapi.azurewebsites.net/swagger/index.html
 
 Payment Service : https://paymentapiservice.azurewebsites.net/swagger/index.html
+  
+---- Here in MockOrderPaidCommand, RefId is the AlterationId and OrderId is just and Id.
 
 Email Service : https://emailapiservice.azurewebsites.net/swagger/index.html
 
