@@ -38,5 +38,19 @@ namespace Application.UnitTests
 
             Assert.False(response.ValidationResult.IsValid);
         }
+
+
+        [Fact]
+        public async Task HandleAsync_Success()
+        {
+            CompletePaymentCommand command = new CompletePaymentCommand()
+            {
+                AlterationId = Guid.NewGuid(),
+            };
+
+            CommandResponse response = await this.commandHandler.HandleAsync(command);
+
+            Assert.False(response.ValidationResult.IsValid);
+        }
     }
 }

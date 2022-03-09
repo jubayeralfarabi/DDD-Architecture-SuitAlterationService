@@ -3,8 +3,6 @@ using Moq;
 using SuitSupply.AlterationService.Application.CommandHandlers;
 using SuitSupply.AlterationService.Application.Commands;
 using SuitSupply.AlterationService.Domain;
-using SuitSupply.AlterationService.Domain.Entities;
-using SuitSupply.AlterationService.Domain.ValueObjects;
 using SuitSupply.Platform.Infrastructure.Core.Commands;
 using SuitSupply.Platform.Infrastructure.Core.Domain;
 using System;
@@ -15,23 +13,36 @@ namespace Application.UnitTests
 {
     public class FinishAlterationCommandHandlerTest
     {
-        private readonly CreateAlterationCommandHandler commandHandler;
-        private readonly ILogger<CreateAlterationCommandHandler> logger;
+        private readonly FinishAlterationCommandHandler commandHandler;
+        private readonly ILogger<FinishAlterationCommandHandler> logger;
         private readonly IAggregateRepository<AlterationAggregate> aggregateRepository;
 
         public FinishAlterationCommandHandlerTest()
         {
-            this.logger = new Mock<ILogger<CreateAlterationCommandHandler>>().Object;
+            this.logger = new Mock<ILogger<FinishAlterationCommandHandler>>().Object;
 
             this.aggregateRepository = new Mock<IAggregateRepository<AlterationAggregate>>().Object;
-            this.commandHandler = new CreateAlterationCommandHandler(this.logger, this.aggregateRepository);
+            this.commandHandler = new FinishAlterationCommandHandler(this.logger, this.aggregateRepository);
         }
 
         [Fact]
         public async Task HandleAsync_Failed()
         {
-            CreateAlterationCommand command = new CreateAlterationCommand()
+            FinishAlterationCommand command = new FinishAlterationCommand()
             {
+            };
+
+            CommandResponse response = await this.commandHandler.HandleAsync(command);
+
+            Assert.False(response.ValidationResult.IsValid);
+        }
+
+        [Fact]
+        public async Task HandleAsync_Success()
+        {
+            FinishAlterationCommand command = new FinishAlterationCommand()
+            {
+                AlterationId = Guid.NewGuid(),
             };
 
             CommandResponse response = await this.commandHandler.HandleAsync(command);

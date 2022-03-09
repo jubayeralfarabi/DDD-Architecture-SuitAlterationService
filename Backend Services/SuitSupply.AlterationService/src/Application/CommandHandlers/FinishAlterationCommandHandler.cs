@@ -10,6 +10,7 @@
     using SuitSupply.Platform.Infrastructure.Domain;
     using SuitSupply.AlterationService.Domain;
     using SuitSupply.AlterationService.Domain.Events;
+    using SuitSupply.AlterationService.Application.CommandHandlers.Validators;
 
     public class FinishAlterationCommandHandler : ICommandHandlerAsync<FinishAlterationCommand>
     {
@@ -30,25 +31,35 @@
 
             CommandResponse response = new CommandResponse();
 
-            try
+            var validationResult = new FinishAlterationCommandValidator().Validate(command);
+            if (!validationResult.IsValid)
             {
-                AlterationAggregate alteration = this.aggregateRepository.GetById(command.AlterationId);
+                validationResult.Errors.ForEach(e => response.ValidationResult.AddError(e.ErrorMessage));
 
-                alteration.FinishAlteration(command.AlterationId);
+                this.logger.LogInformation($"FinishAlterationCommandValidator END with AlterationId: '{command.AlterationId}'");
 
-                await this.aggregateRepository.UpdateAsync(alteration);
-
-                var error = alteration.Events.FirstOrDefault(e => e is AlterationBusinessRuleViolationEvent);
-                if (error != null)
-                {
-                    response.ValidationResult.AddError((error as AlterationBusinessRuleViolationEvent).GetMessage());
-                }
+                return response;
             }
-            catch (Exception ex)
-            {
-                this.logger.LogError(ex, $"Exception: FinishAlterationCommandHandler for alterationid {command.AlterationId}, Message {ex.Message}");
 
-                response.ValidationResult.AddError(ex.Message);
+            AlterationAggregate alteration = this.aggregateRepository.GetById(command.AlterationId);
+
+            if (alteration == null)
+            {
+                response.ValidationResult.AddError("Alteration does not exist.");
+
+                this.logger.LogInformation($"FinishAlterationCommandValidator END with AlterationId: '{command.AlterationId}'");
+
+                return response;
+            }
+
+            alteration.FinishAlteration(command.AlterationId);
+
+            await this.aggregateRepository.UpdateAsync(alteration);
+
+            var error = alteration.Events.FirstOrDefault(e => e is AlterationBusinessRuleViolationEvent);
+            if (error != null)
+            {
+                response.ValidationResult.AddError((error as AlterationBusinessRuleViolationEvent).GetMessage());
             }
 
             this.logger.LogInformation($"FinishAlterationCommandHandler END with AlterationId: '{command.AlterationId}'");
