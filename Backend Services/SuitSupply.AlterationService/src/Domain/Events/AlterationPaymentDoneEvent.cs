@@ -10,11 +10,10 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="AlterationCreatedEvent"/> class.
         /// </summary>
-        public AlterationPaymentDoneEvent(Guid alterationId, AlterationStatusEnum status, Guid coorelationId)
+        public AlterationPaymentDoneEvent(Guid alterationId, AlterationStatusEnum status)
         {
             this.AlterationId = alterationId;
             this.Status = status;
-            this.CorrelationId = coorelationId;
         }
 
         public Guid AlterationId { get; private set; }

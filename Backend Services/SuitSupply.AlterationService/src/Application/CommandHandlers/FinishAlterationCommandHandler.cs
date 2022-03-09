@@ -26,7 +26,7 @@
 
         public async Task<CommandResponse> HandleAsync(FinishAlterationCommand command)
         {
-            this.logger.LogInformation($"FinishAlterationCommandHandler START with CorrelationId: '{command.CorrelationId}'");
+            this.logger.LogInformation($"FinishAlterationCommandHandler START with AlterationId: '{command.AlterationId}'");
 
             CommandResponse response = new CommandResponse();
 
@@ -34,9 +34,9 @@
             {
                 AlterationAggregate alteration = this.aggregateRepository.GetById(command.AlterationId);
 
-                alteration.FinishAlteration(command.AlterationId, command.CorrelationId);
+                alteration.FinishAlteration(command.AlterationId);
 
-                await this.aggregateRepository.UpdateAsync(alteration).ConfigureAwait(false);
+                await this.aggregateRepository.UpdateAsync(alteration);
 
                 var error = alteration.Events.FirstOrDefault(e => e is AlterationBusinessRuleViolationEvent);
                 if (error != null)
@@ -46,12 +46,12 @@
             }
             catch (Exception ex)
             {
-                this.logger.LogError(ex, $"Exception: FinishAlterationCommandHandler with CorrelationId: '{command.CorrelationId}', for alterationid {command.AlterationId}, Message {ex.Message}");
+                this.logger.LogError(ex, $"Exception: FinishAlterationCommandHandler for alterationid {command.AlterationId}, Message {ex.Message}");
 
                 response.ValidationResult.AddError(ex.Message);
             }
 
-            this.logger.LogInformation($"FinishAlterationCommandHandler END with CorrelationId: '{command.CorrelationId}'");
+            this.logger.LogInformation($"FinishAlterationCommandHandler END with AlterationId: '{command.AlterationId}'");
 
             return response;
         }

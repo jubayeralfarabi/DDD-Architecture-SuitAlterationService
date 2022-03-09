@@ -23,7 +23,7 @@
         {
         }
 
-        public void CreateAlteration(Guid alterationId, AlterationDetails[] alterationDetails, string customerId, Guid coorelationId)
+        public void CreateAlteration(Guid alterationId, AlterationDetails[] alterationDetails, string customerId)
         {
             List<EventMessage> businessRuleViotations = new List<EventMessage>() { };
             if (alterationId == Guid.Empty) businessRuleViotations.Add(new EventMessage(AlterationBusinessValidationCodes.PropertyIsNullEmpty, EventMessageType.Error, new object[] { nameof(alterationId), "Invalid alteration id."}));
@@ -60,12 +60,12 @@
             this.CustomerId = customerId;
             this.Status = AlterationStatusEnum.UnPaid;
 
-            AlterationCreatedEvent alterationCreatedEvent = new AlterationCreatedEvent(alterationId, alterationDetails, AlterationStatusEnum.UnPaid, coorelationId);
+            AlterationCreatedEvent alterationCreatedEvent = new AlterationCreatedEvent(alterationId, alterationDetails, AlterationStatusEnum.UnPaid);
             
             this.AddEventOnly<AlterationAggregate>(alterationCreatedEvent);
         }
 
-        public void CompletePayment(Guid alterationId, Guid coorelationId)
+        public void CompletePayment(Guid alterationId)
         {
             List<EventMessage> businessRuleViotations = new List<EventMessage>() { };
             if (this.Status != AlterationStatusEnum.UnPaid) businessRuleViotations.Add(new EventMessage(AlterationBusinessValidationCodes.AlreadyPaid, EventMessageType.Error, new object[] { nameof(alterationId), "Already Paid." }));
@@ -84,12 +84,12 @@
 
             this.Status = AlterationStatusEnum.Paid;
 
-            AlterationPaymentDoneEvent alterationPaymentDoneEvent = new AlterationPaymentDoneEvent(alterationId, AlterationStatusEnum.Paid, coorelationId);
+            AlterationPaymentDoneEvent alterationPaymentDoneEvent = new AlterationPaymentDoneEvent(alterationId, AlterationStatusEnum.Paid);
 
             this.AddEventOnly<AlterationAggregate>(alterationPaymentDoneEvent);
         }
 
-        public void StartProcessing(Guid alterationId, Guid coorelationId)
+        public void StartProcessing(Guid alterationId)
         {
             List<EventMessage> businessRuleViotations = new List<EventMessage>() { };
             if (this.Status != AlterationStatusEnum.Paid) businessRuleViotations.Add(new EventMessage(AlterationBusinessValidationCodes.PaymentRequired, EventMessageType.Error, new object[] { nameof(alterationId), "Alteration required payment." }));
@@ -109,13 +109,13 @@
             this.Status = AlterationStatusEnum.TailorProcessing;
 
 
-            AlterationStartedProcessingEvent alterationStartedProcessingEvent = new AlterationStartedProcessingEvent(alterationId, AlterationStatusEnum.TailorProcessing, coorelationId);
+            AlterationStartedProcessingEvent alterationStartedProcessingEvent = new AlterationStartedProcessingEvent(alterationId, AlterationStatusEnum.TailorProcessing);
 
 
             this.AddEventOnly<AlterationAggregate>(alterationStartedProcessingEvent);
         }
 
-        public void FinishAlteration(Guid alterationId, Guid coorelationId)
+        public void FinishAlteration(Guid alterationId)
         {
             List<EventMessage> businessRuleViotations = new List<EventMessage>() { };
             if (this.Status == AlterationStatusEnum.UnPaid) businessRuleViotations.Add(new EventMessage(AlterationBusinessValidationCodes.PaymentRequired, EventMessageType.Error, new object[] { nameof(alterationId), "Alteration required payment." }));
@@ -134,7 +134,7 @@
 
             this.Status = AlterationStatusEnum.Finished;
 
-            AlterationFinishedEvent alterationFinishedEvent = new AlterationFinishedEvent(alterationId, AlterationStatusEnum.Finished, this.CustomerId, coorelationId);
+            AlterationFinishedEvent alterationFinishedEvent = new AlterationFinishedEvent(alterationId, AlterationStatusEnum.Finished, this.CustomerId);
 
             this.AddEventOnly<AlterationAggregate>(alterationFinishedEvent);
         }

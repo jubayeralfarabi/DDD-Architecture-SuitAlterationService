@@ -26,7 +26,7 @@
 
         public async Task<CommandResponse> HandleAsync(CompletePaymentCommand command)
         {
-            this.logger.LogInformation($"DoPaymentCommandHandler START with CorrelationId: '{command.CorrelationId}'");
+            this.logger.LogInformation($"DoPaymentCommandHandler START with AlterationId: '{command.AlterationId}'");
 
             CommandResponse response = new CommandResponse();
 
@@ -34,9 +34,9 @@
             {
                 AlterationAggregate alteration = this.aggregateRepository.GetById(command.AlterationId);
 
-                alteration.CompletePayment(command.AlterationId, command.CorrelationId);
+                alteration.CompletePayment(command.AlterationId);
 
-                await this.aggregateRepository.UpdateAsync(alteration).ConfigureAwait(false);
+                await this.aggregateRepository.UpdateAsync(alteration);
 
                 var error = alteration.Events.FirstOrDefault(e => e is AlterationBusinessRuleViolationEvent);
                 if (error != null)
@@ -46,12 +46,12 @@
             }
             catch (Exception ex)
             {
-                this.logger.LogError(ex, $"Exception: DoPaymentCommandHandler with CorrelationId: '{command.CorrelationId}', for alterationid {command.AlterationId}, Message {ex.Message}");
+                this.logger.LogError(ex, $"Exception: DoPaymentCommandHandler for alterationid {command.AlterationId}, Message {ex.Message}");
 
                 response.ValidationResult.AddError(ex.Message);
             }
 
-            this.logger.LogInformation($"DoPaymentCommandHandler END with CorrelationId: '{command.CorrelationId}'");
+            this.logger.LogInformation($"DoPaymentCommandHandler END with AlterationId: '{command.AlterationId}'");
 
             return response;
         }

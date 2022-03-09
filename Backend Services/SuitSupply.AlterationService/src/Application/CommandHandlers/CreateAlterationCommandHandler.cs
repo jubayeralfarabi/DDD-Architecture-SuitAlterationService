@@ -26,17 +26,28 @@
 
         public async Task<CommandResponse> HandleAsync(CreateAlterationCommand command)
         {
-            this.logger.LogInformation($"CreateAlterationCommandHandler START with CorrelationId: '{command.CorrelationId}'");
+            this.logger.LogInformation($"CreateAlterationCommandHandler START with AlterationId: '{command.AlterationId}'");
 
             CommandResponse response = new CommandResponse();
 
             try
             {
-                AlterationAggregate alteration = new AlterationAggregate();
+                AlterationAggregate alteration = this.aggregateRepository.GetById(command.AlterationId);
+                
+                if(alteration!= null)
+                {
+                    this.logger.LogInformation($"CreateAlterationCommandHandler END with AlterationId: '{command.AlterationId}'");
 
-                alteration.CreateAlteration(command.AlterationId, command.AlterationDetails, command.CustomerId, command.CorrelationId);
+                    response.ValidationResult.AddError("Alteration Id already exists.");
 
-                await this.aggregateRepository.SaveAsync(alteration).ConfigureAwait(false);
+                    return response;
+                }
+
+                alteration = new AlterationAggregate();
+
+                alteration.CreateAlteration(command.AlterationId, command.AlterationDetails, command.CustomerId);
+
+                await this.aggregateRepository.SaveAsync(alteration);
 
                 var error = alteration.Events.FirstOrDefault(e => e is AlterationBusinessRuleViolationEvent);
                 if (error != null)
@@ -46,12 +57,12 @@
             }
             catch (Exception ex)
             {
-                this.logger.LogError(ex, $"Exception: CreateAlterationCommandHandler with CorrelationId: '{command.CorrelationId}', for alterationid {command.AlterationId}, Message {ex.Message}");
+                this.logger.LogError(ex, $"Exception: CreateAlterationCommandHandler for alterationid {command.AlterationId}, Message {ex.Message}");
 
                 response.ValidationResult.AddError(ex.Message);
             }
 
-            this.logger.LogInformation($"CreateAlterationCommandHandler END with CorrelationId: '{command.CorrelationId}'");
+            this.logger.LogInformation($"CreateAlterationCommandHandler END with AlterationId: '{command.AlterationId}'");
 
             return response;
         }

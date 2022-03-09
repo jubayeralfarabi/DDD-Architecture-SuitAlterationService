@@ -10,7 +10,5 @@ namespace SuitSupply.Platform.Infrastructure.Core.Commands
     public abstract class Command
     {
         public Guid CorrelationId { get; set; }
-
-        public DateTime TimeStamp { get; set; }
     }
 }
