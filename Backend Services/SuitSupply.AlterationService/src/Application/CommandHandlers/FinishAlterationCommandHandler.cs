@@ -1,16 +1,12 @@
 ﻿namespace SuitSupply.AlterationService.Application.CommandHandlers
 {
-    using System;
-    using System.Linq;
     using System.Threading.Tasks;
     using Microsoft.Extensions.Logging;
     using SuitSupply.AlterationService.Application.Commands;
     using SuitSupply.Platform.Infrastructure.Core.Commands;
     using SuitSupply.Platform.Infrastructure.Core.Domain;
-    using SuitSupply.Platform.Infrastructure.Domain;
     using SuitSupply.AlterationService.Domain;
-    using SuitSupply.AlterationService.Domain.Events;
-    using SuitSupply.AlterationService.Application.CommandHandlers.Validators;
+    using SuitSupply.AlterationService.Application.CommandHandlers.Helpers;
 
     public class FinishAlterationCommandHandler : ICommandHandlerAsync<FinishAlterationCommand>
     {
@@ -29,42 +25,15 @@
         {
             this.logger.LogInformation($"FinishAlterationCommandHandler START with AlterationId: '{command.AlterationId}'");
 
-            CommandResponse response = new CommandResponse();
-
-            var validationResult = new FinishAlterationCommandValidator().Validate(command);
-            if (!validationResult.IsValid)
-            {
-                validationResult.Errors.ForEach(e => response.ValidationResult.AddError(e.ErrorMessage));
-
-                this.logger.LogInformation($"FinishAlterationCommandValidator END with AlterationId: '{command.AlterationId}'");
-
-                return response;
-            }
-
             AlterationAggregate alteration = this.aggregateRepository.GetById(command.AlterationId);
 
-            if (alteration == null)
-            {
-                response.ValidationResult.AddError("Alteration does not exist.");
-
-                this.logger.LogInformation($"FinishAlterationCommandValidator END with AlterationId: '{command.AlterationId}'");
-
-                return response;
-            }
+            if (alteration == null) return CommandHandlerHelper.AlterationDoesNotExistMessage(alteration);
 
             alteration.FinishAlteration(command.AlterationId);
 
             await this.aggregateRepository.UpdateAsync(alteration);
 
-            var error = alteration.Events.FirstOrDefault(e => e is AlterationBusinessRuleViolationEvent);
-            if (error != null)
-            {
-                response.ValidationResult.AddError((error as AlterationBusinessRuleViolationEvent).GetMessage());
-            }
-
-            this.logger.LogInformation($"FinishAlterationCommandHandler END with AlterationId: '{command.AlterationId}'");
-
-            return response;
+            return CommandHandlerHelper.CheckAggregateErrorEvent(alteration);
         }
     }
 }

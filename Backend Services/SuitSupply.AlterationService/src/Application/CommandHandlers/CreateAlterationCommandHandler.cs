@@ -12,6 +12,7 @@
     using SuitSupply.AlterationService.Domain.Events;
     using SuitSupply.AlterationService.Application.CommandHandlers.Validators;
     using SuitSupply.Platform.Infrastructure.Core.Validation;
+    using SuitSupply.AlterationService.Application.CommandHandlers.Helpers;
 
     public class CreateAlterationCommandHandler : ICommandHandlerAsync<CreateAlterationCommand>
     {
@@ -28,30 +29,9 @@
 
         public async Task<CommandResponse> HandleAsync(CreateAlterationCommand command)
         {
-            this.logger.LogInformation($"CreateAlterationCommandHandler START with AlterationId: '{command.AlterationId}'");
-
-            CommandResponse response = new CommandResponse();
-
-            var validationResult = new CreateAlterationCommandValidator().Validate(command);
-            if(!validationResult.IsValid)
-            {
-                validationResult.Errors.ForEach(e => response.ValidationResult.AddError(e.ErrorMessage));
-
-                this.logger.LogInformation($"CreateAlterationCommandHandler END with AlterationId: '{command.AlterationId}'");
-
-                return response;
-            }
-
             AlterationAggregate alteration = this.aggregateRepository.GetById(command.AlterationId);
-                
-            if(alteration!= null)
-            {
-                this.logger.LogInformation($"CreateAlterationCommandHandler END with AlterationId: '{command.AlterationId}'");
 
-                response.ValidationResult.AddError("Alteration Id already exists.");
-
-                return response;
-            }
+            if (alteration == null) return CommandHandlerHelper.AlterationDoesExistMessage(alteration);
 
             alteration = new AlterationAggregate();
 
@@ -59,15 +39,7 @@
 
             await this.aggregateRepository.SaveAsync(alteration);
 
-            var error = alteration.Events.FirstOrDefault(e => e is AlterationBusinessRuleViolationEvent);
-            if (error != null)
-            {
-                response.ValidationResult.AddError((error as AlterationBusinessRuleViolationEvent).GetMessage());
-            }
-            
-            this.logger.LogInformation($"CreateAlterationCommandHandler END with AlterationId: '{command.AlterationId}'");
-
-            return response;
+            return CommandHandlerHelper.CheckAggregateErrorEvent(alteration);
         }
     }
 }

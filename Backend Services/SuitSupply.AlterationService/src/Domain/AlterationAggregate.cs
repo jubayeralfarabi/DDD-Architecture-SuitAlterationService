@@ -24,35 +24,9 @@
 
         public void CreateAlteration(Guid alterationId, AlterationDetails[] alterationDetails, string customerId)
         {
-            List<EventMessage> businessRuleViotations = new List<EventMessage>() { };
-            if (alterationId == Guid.Empty) businessRuleViotations.Add(new EventMessage(AlterationBusinessValidationCodes.PropertyIsNullEmpty, EventMessageType.Error, new object[] { nameof(alterationId), "Invalid alteration id."}));
-            if (alterationDetails == null || !alterationDetails.Any()) businessRuleViotations.Add(new EventMessage(AlterationBusinessValidationCodes.ArrayMustHaveAnElement, EventMessageType.Error, new object[] { nameof(alterationDetails), "alteration details must have value." }));
-            if (alterationDetails != null && alterationDetails.Any())
+            if (BusinessRuleValidator.ValidateCreateAlteration(alterationId, alterationDetails, customerId).Count>0)
             {
-                alterationDetails.ToList().ForEach(a =>
-                {
-                    if (a.AlterationValue < -5 || a.AlterationValue > 5)
-                    {
-                        businessRuleViotations.Add(new EventMessage(AlterationBusinessValidationCodes.InvalidAlterationValue, EventMessageType.Error, new object[] { nameof(alterationDetails), a.AlterationValue, "Has invalid alteration value. It should be between +/- 5." }));
-                    }
-                    if (!Enum.IsDefined<AlterationTypeEnum>(a.AlterationName))
-                    {
-                        businessRuleViotations.Add(new EventMessage(AlterationBusinessValidationCodes.InvalidAlterationType, EventMessageType.Error, new object[] { nameof(a.AlterationName), a.AlterationName, "Has invalid alteration type." }));
-                    }
-                });
-            }
-            if (string.IsNullOrEmpty(customerId)) businessRuleViotations.Add(new EventMessage(AlterationBusinessValidationCodes.PropertyIsNullEmpty, EventMessageType.Error, new object[] { nameof(alterationId), "Invalid customer id." }));
-
-
-            if (businessRuleViotations.Count>0)
-            {
-                AlterationBusinessRuleViolationEvent ruleViolationEvent = new AlterationBusinessRuleViolationEvent(
-                    alterationId.ToString(),
-                    nameof(this.CreateAlteration),
-                    alterationDetails,
-                    businessRuleViotations.ToArray());
-
-                this.AddEvent(ruleViolationEvent);
+                this.AddEvent(BusinessRuleValidator.GetRuleViolationEvent(alterationId, nameof(CreateAlteration), alterationDetails));
                 return;
             }
 
@@ -66,18 +40,9 @@
 
         public void CompletePayment(Guid alterationId)
         {
-            List<EventMessage> businessRuleViotations = new List<EventMessage>() { };
-            if (this.Status != AlterationStatusEnum.UnPaid) businessRuleViotations.Add(new EventMessage(AlterationBusinessValidationCodes.AlreadyPaid, EventMessageType.Error, new object[] { nameof(alterationId), "Already Paid." }));
-
-            if (businessRuleViotations.Count > 0)
+            if (BusinessRuleValidator.ValidateCompletePayment(alterationId, this.Status).Count > 0)
             {
-                AlterationBusinessRuleViolationEvent ruleViolationEvent = new AlterationBusinessRuleViolationEvent(
-                    alterationId.ToString(),
-                    nameof(this.CreateAlteration),
-                    null,
-                    businessRuleViotations.ToArray());
-
-                this.AddEvent(ruleViolationEvent);
+                this.AddEvent(BusinessRuleValidator.GetRuleViolationEvent(alterationId, nameof(CompletePayment)));
                 return;
             }
 
@@ -88,18 +53,9 @@
 
         public void StartProcessing(Guid alterationId)
         {
-            List<EventMessage> businessRuleViotations = new List<EventMessage>() { };
-            if (this.Status != AlterationStatusEnum.Paid) businessRuleViotations.Add(new EventMessage(AlterationBusinessValidationCodes.PaymentRequired, EventMessageType.Error, new object[] { nameof(alterationId), "Alteration required payment." }));
-
-            if (businessRuleViotations.Count > 0)
+            if (BusinessRuleValidator.ValidateStartProcessing(alterationId, this.Status).Count > 0)
             {
-                AlterationBusinessRuleViolationEvent ruleViolationEvent = new AlterationBusinessRuleViolationEvent(
-                    alterationId.ToString(),
-                    nameof(this.CreateAlteration),
-                    null,
-                    businessRuleViotations.ToArray());
-
-                this.AddEvent(ruleViolationEvent);
+                this.AddEvent(BusinessRuleValidator.GetRuleViolationEvent(alterationId, nameof(StartProcessing)));
                 return;
             }
 
@@ -110,18 +66,9 @@
 
         public void FinishAlteration(Guid alterationId)
         {
-            List<EventMessage> businessRuleViotations = new List<EventMessage>() { };
-            if (this.Status == AlterationStatusEnum.UnPaid) businessRuleViotations.Add(new EventMessage(AlterationBusinessValidationCodes.PaymentRequired, EventMessageType.Error, new object[] { nameof(alterationId), "Alteration required payment." }));
-
-            if (businessRuleViotations.Count > 0)
+            if (BusinessRuleValidator.ValidateFinishAlteration(alterationId, this.Status).Count > 0)
             {
-                AlterationBusinessRuleViolationEvent ruleViolationEvent = new AlterationBusinessRuleViolationEvent(
-                    alterationId.ToString(),
-                    nameof(this.CreateAlteration),
-                    null,
-                    businessRuleViotations.ToArray());
-
-                this.AddEvent(ruleViolationEvent);
+                this.AddEvent(BusinessRuleValidator.GetRuleViolationEvent(alterationId, nameof(FinishAlteration)));
                 return;
             }
 

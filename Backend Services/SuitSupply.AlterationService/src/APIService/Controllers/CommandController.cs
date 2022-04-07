@@ -30,12 +30,7 @@ namespace SuitSupply.AlterationService.APIService.Controllers
         {
             CommandResponse response = await this.dispatcher.SendAsync(command).ConfigureAwait(false);
 
-            if (!response.ValidationResult.IsValid)
-            {
-                return BadRequest(response);
-            }
-
-            return Ok(response);
+            return CheckResponse(response);
         }
 
         /// <summary>
@@ -48,12 +43,7 @@ namespace SuitSupply.AlterationService.APIService.Controllers
         {
             CommandResponse response = await this.dispatcher.SendAsync(command).ConfigureAwait(false);
 
-            if (!response.ValidationResult.IsValid)
-            {
-                return BadRequest(response);
-            }
-
-            return Ok(response);
+            return CheckResponse(response);
         }
 
         /// <summary>
@@ -66,6 +56,11 @@ namespace SuitSupply.AlterationService.APIService.Controllers
         {
             CommandResponse response = await this.dispatcher.SendAsync(command).ConfigureAwait(false);
 
+            return CheckResponse(response);
+        }
+
+        private IActionResult CheckResponse(CommandResponse response)
+        {
             if (!response.ValidationResult.IsValid)
             {
                 return BadRequest(response);
@@ -77,7 +72,6 @@ namespace SuitSupply.AlterationService.APIService.Controllers
         [HttpGet]
         public string Ping()
         {
-            this.logger.LogInformation("sdfsd");
             return "Server is running";
         }
     }

@@ -11,6 +11,7 @@
     using SuitSupply.AlterationService.Domain;
     using SuitSupply.AlterationService.Domain.Events;
     using SuitSupply.AlterationService.Application.CommandHandlers.Validators;
+    using SuitSupply.AlterationService.Application.CommandHandlers.Helpers;
 
     public class StartProcessingAlterationCommandHandler : ICommandHandlerAsync<StartProcessingAlterationCommand>
     {
@@ -27,44 +28,15 @@
 
         public async Task<CommandResponse> HandleAsync(StartProcessingAlterationCommand command)
         {
-            this.logger.LogInformation($"StartProcessingAlterationCommandHandler START with AlterationId: '{command.AlterationId}'");
-
-            CommandResponse response = new CommandResponse();
-
-            var validationResult = new StartProcessingAlterationCommandValidator().Validate(command);
-            if (!validationResult.IsValid)
-            {
-                validationResult.Errors.ForEach(e => response.ValidationResult.AddError(e.ErrorMessage));
-
-                this.logger.LogInformation($"StartProcessingAlterationCommandValidator END with AlterationId: '{command.AlterationId}'");
-
-                return response;
-            }
-
             AlterationAggregate alteration = this.aggregateRepository.GetById(command.AlterationId);
 
-            if (alteration == null)
-            {
-                response.ValidationResult.AddError("Alteration does not exist.");
-
-                this.logger.LogInformation($"StartProcessingAlterationCommandValidator END with AlterationId: '{command.AlterationId}'");
-
-                return response;
-            }
+            if (alteration == null) return CommandHandlerHelper.AlterationDoesNotExistMessage(alteration);
 
             alteration.StartProcessing(command.AlterationId);
 
             await this.aggregateRepository.UpdateAsync(alteration);
 
-            var error = alteration.Events.FirstOrDefault(e => e is AlterationBusinessRuleViolationEvent);
-            if (error!=null) 
-            { 
-                response.ValidationResult.AddError((error as AlterationBusinessRuleViolationEvent).GetMessage());
-            }
-            
-            this.logger.LogInformation($"StartProcessingAlterationCommandHandler END with AlterationId: '{command.AlterationId}'");
-
-            return response;
+            return CommandHandlerHelper.CheckAggregateErrorEvent(alteration);
         }
     }
 }
