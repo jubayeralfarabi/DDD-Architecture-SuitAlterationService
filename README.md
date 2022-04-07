@@ -1,5 +1,5 @@
 # Alteration System Introduction 
-This repo includes 3 backend services and 1 Azure Funtion written on c# .Net 6 
+This repo includes 3 backend services and 1 Azure Funtion written on c# .Net 6 and maintaing DDD architecture.
 
 **Tools used:** Azure SQL Database, Azure Service Bus, Azure Application Insight, Azure AppService, Azure Function
 
@@ -10,7 +10,7 @@ Alteration Service : https://alterationapi.azurewebsites.net/swagger/index.html
 
 Payment Service : https://paymentapiservice.azurewebsites.net/swagger/index.html
   
----- Here in MockOrderPaidCommand, RefId is the AlterationId and OrderId is just and Id.
+---- Here in MockOrderPaidCommand, RefId is the AlterationId and OrderId is just an Id.
 
 Email Service : https://emailapiservice.azurewebsites.net/swagger/index.html
 
