@@ -1,6 +1,6 @@
 ﻿namespace SuitSupply.AlterationService.Application.Commands
 {
-    using SuitSupply.AlterationService.Domain.Entities;
+    using SuitSupply.AlterationService.Application.Commands.Models;
     using SuitSupply.Platform.Infrastructure.Core.Commands;
     using System;
 
@@ -9,7 +9,7 @@
 
         public Guid AlterationId { get; set; }
 
-        public AlterationDetails[] AlterationDetails { get; set; }
+        public AlterationDetailsApplication[] AlterationDetails { get; set; }
 
         public string CustomerId { get; set; }
     }

@@ -1,5 +1,8 @@
-﻿using SuitSupply.AlterationService.Domain;
+﻿using SuitSupply.AlterationService.Application.Commands.Models;
+using SuitSupply.AlterationService.Domain;
+using SuitSupply.AlterationService.Domain.Entities;
 using SuitSupply.AlterationService.Domain.Events;
+using SuitSupply.AlterationService.Domain.ValueObjects;
 using SuitSupply.Platform.Infrastructure.Core.Commands;
 using System;
 using System.Collections.Generic;
@@ -38,6 +41,12 @@ namespace SuitSupply.AlterationService.Application.CommandHandlers.Helpers
             response.ValidationResult.AddError("Alteration Id already exists.");
 
             return response;
+        }
+
+
+        public static AlterationDetails[] GetAlterationDetails(AlterationDetailsApplication[] alteration)
+        {
+            return alteration.Select(a=> new AlterationDetails { AlterationName = (AlterationTypeEnum)Enum.Parse(typeof(AlterationTypeEnum),a.AlterationName.ToString()), AlterationValue = a.AlterationValue}).ToArray();
         }
     }
 }

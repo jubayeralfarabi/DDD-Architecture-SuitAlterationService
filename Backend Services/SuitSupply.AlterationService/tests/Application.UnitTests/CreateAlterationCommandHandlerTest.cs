@@ -2,6 +2,7 @@ using Microsoft.Extensions.Logging;
 using Moq;
 using SuitSupply.AlterationService.Application.CommandHandlers;
 using SuitSupply.AlterationService.Application.Commands;
+using SuitSupply.AlterationService.Application.Commands.Models;
 using SuitSupply.AlterationService.Domain;
 using SuitSupply.AlterationService.Domain.Entities;
 using SuitSupply.AlterationService.Domain.ValueObjects;
@@ -15,7 +16,7 @@ namespace Application.UnitTests
 {
     public class CreateAlterationCommandHandlerTest
     {
-        public AlterationDetails[] ValidAlterationDetails => new AlterationDetails[] { new AlterationDetails() { AlterationName = AlterationTypeEnum.SleeveRight, AlterationValue = 1, Id = 0 } };
+        public AlterationDetailsApplication[] ValidAlterationDetails => new AlterationDetailsApplication[] { new AlterationDetailsApplication() { AlterationName = AlterationTypeApplicationEnum.SleeveRight, AlterationValue = 1, Id = 0 } };
         public const string customerId = "customer";
         private readonly CreateAlterationCommandHandler commandHandler;
         private readonly ILogger<CreateAlterationCommandHandler> logger;
