@@ -31,7 +31,7 @@
         {
             AlterationAggregate alteration = this.aggregateRepository.GetById(command.AlterationId);
 
-            if (alteration == null) return CommandHandlerHelper.AlterationDoesExistMessage(alteration);
+            if (alteration != null) return CommandHandlerHelper.AlterationDoesExistMessage(alteration);
 
             alteration = new AlterationAggregate();
 
