@@ -1,9 +1,9 @@
-﻿namespace SuitSupply.Platform.Infrastructure.Core.Commands
+﻿namespace Suit.Platform.Infrastructure.Core.Commands
 {
     using System.Collections.Generic;
-    using SuitSupply.Platform.Infrastructure.Core.Events;
+    using Suit.Platform.Infrastructure.Core.Events;
     using FluentValidation;
-    using SuitSupply.Platform.Infrastructure.Core.Validation;
+    using Suit.Platform.Infrastructure.Core.Validation;
 
     public class CommandResponse
     {

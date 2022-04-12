@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SuitSupply.AlterationService.Application.Commands.Models
+namespace Suit.AlterationService.Application.Commands.Models
 {
     public class AlterationDetailsApplication
     {

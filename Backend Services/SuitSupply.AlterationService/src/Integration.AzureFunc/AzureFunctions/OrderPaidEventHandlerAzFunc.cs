@@ -1,12 +1,12 @@
 using System.Threading.Tasks;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Extensions.Logging;
-using SuitSupply.AlterationService.Application.Commands;
-using SuitSupply.Platform.Infrastructure.Core;
-using SuitSupply.PaymentService.Integration.Events;
+using Suit.AlterationService.Application.Commands;
+using Suit.Platform.Infrastructure.Core;
+using Suit.PaymentService.Integration.Events;
 using Newtonsoft.Json;
 
-namespace SuitSupply.AlterationService.Integration.AzureFunc
+namespace Suit.AlterationService.Integration.AzureFunc
 {
     public class OrderPaidEventHandlerAzFunc
     {

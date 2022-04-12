@@ -1,11 +1,11 @@
-namespace SuitSupply.AlterationService.APIService.Controllers
+namespace Suit.AlterationService.APIService.Controllers
 {
     using Microsoft.AspNetCore.Mvc;
     using System.Threading.Tasks;
     using Microsoft.Extensions.Logging;
-    using SuitSupply.AlterationService.Application.Commands;
-    using SuitSupply.Platform.Infrastructure.Core;
-    using SuitSupply.Platform.Infrastructure.Core.Commands;
+    using Suit.AlterationService.Application.Commands;
+    using Suit.Platform.Infrastructure.Core;
+    using Suit.Platform.Infrastructure.Core.Commands;
 
     [ApiController]
     [Route("[controller]/[action]")]

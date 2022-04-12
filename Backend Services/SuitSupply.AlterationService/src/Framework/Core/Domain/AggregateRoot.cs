@@ -1,11 +1,11 @@
-﻿namespace SuitSupply.Platform.Infrastructure.Core.Domain
+﻿namespace Suit.Platform.Infrastructure.Core.Domain
 {
     using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Linq;
     using System.Reflection;
-    using SuitSupply.Platform.Infrastructure.Domain;
+    using Suit.Platform.Infrastructure.Domain;
 
     public abstract class AggregateRoot : Entity, IAggregateRoot
     {

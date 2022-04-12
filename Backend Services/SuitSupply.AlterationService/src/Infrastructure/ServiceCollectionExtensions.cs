@@ -1,16 +1,16 @@
-﻿namespace SuitSupply.Platform.Infrastructure.Extensions
+﻿namespace Suit.Platform.Infrastructure.Extensions
 {
     using System;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.DependencyInjection;
-    using SuitSupply.AlterationService.Domain;
-    using SuitSupply.AlterationService.Infrastructure.ServiceBus;
-    using SuitSupply.Infrastructure.Repository.RDBRepository;
-    using SuitSupply.Infrastructure.Repository.RDBRepository.DbContexts;
-    using SuitSupply.Platform.Infrastructure.Core;
-    using SuitSupply.Platform.Infrastructure.Core.Commands;
-    using SuitSupply.Platform.Infrastructure.Core.Domain;
-    using SuitSupply.Platform.Infrastructure.Core.Events;
+    using Suit.AlterationService.Domain;
+    using Suit.AlterationService.Infrastructure.ServiceBus;
+    using Suit.Infrastructure.Repository.RDBRepository;
+    using Suit.Infrastructure.Repository.RDBRepository.DbContexts;
+    using Suit.Platform.Infrastructure.Core;
+    using Suit.Platform.Infrastructure.Core.Commands;
+    using Suit.Platform.Infrastructure.Core.Domain;
+    using Suit.Platform.Infrastructure.Core.Events;
 
     public static class ServiceCollectionExtensions
     {

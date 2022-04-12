@@ -1,16 +1,16 @@
 using Microsoft.EntityFrameworkCore;
-using SuitSupply.Infrastructure.Repository.RDBRepository;
-using SuitSupply.Infrastructure.Repository.RDBRepository.DbContexts;
-using SuitSupply.AlterationService.Infrastructure.ServiceBus;
-using SuitSupply.Platform.Infrastructure.Extensions;
-using SuitSupply.Platform.Infrastructure.Core.Domain;
-using SuitSupply.AlterationService.Domain;
-using SuitSupply.AlterationService.Application.CommandHandlers;
-using SuitSupply.AlterationService.Application.Commands;
-using SuitSupply.Platform.Infrastructure.Core.Commands;
-using SuitSupply.AlterationService.Domain.Events;
-using SuitSupply.Platform.Infrastructure.Core.Events;
-using SuitSupply.AlterationService.Read.EventHandlers;
+using Suit.Infrastructure.Repository.RDBRepository;
+using Suit.Infrastructure.Repository.RDBRepository.DbContexts;
+using Suit.AlterationService.Infrastructure.ServiceBus;
+using Suit.Platform.Infrastructure.Extensions;
+using Suit.Platform.Infrastructure.Core.Domain;
+using Suit.AlterationService.Domain;
+using Suit.AlterationService.Application.CommandHandlers;
+using Suit.AlterationService.Application.Commands;
+using Suit.Platform.Infrastructure.Core.Commands;
+using Suit.AlterationService.Domain.Events;
+using Suit.Platform.Infrastructure.Core.Events;
+using Suit.AlterationService.Read.EventHandlers;
 
 var builder = WebApplication.CreateBuilder(args);
 

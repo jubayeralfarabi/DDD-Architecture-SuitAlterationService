@@ -1,17 +1,17 @@
-﻿namespace SuitSupply.AlterationService.Application.CommandHandlers
+﻿namespace Suit.AlterationService.Application.CommandHandlers
 {
     using System;
     using System.Linq;
     using System.Threading.Tasks;
     using Microsoft.Extensions.Logging;
-    using SuitSupply.AlterationService.Application.Commands;
-    using SuitSupply.Platform.Infrastructure.Core.Commands;
-    using SuitSupply.Platform.Infrastructure.Core.Domain;
-    using SuitSupply.Platform.Infrastructure.Domain;
-    using SuitSupply.AlterationService.Domain;
-    using SuitSupply.AlterationService.Domain.Events;
-    using SuitSupply.AlterationService.Application.CommandHandlers.Validators;
-    using SuitSupply.AlterationService.Application.CommandHandlers.Helpers;
+    using Suit.AlterationService.Application.Commands;
+    using Suit.Platform.Infrastructure.Core.Commands;
+    using Suit.Platform.Infrastructure.Core.Domain;
+    using Suit.Platform.Infrastructure.Domain;
+    using Suit.AlterationService.Domain;
+    using Suit.AlterationService.Domain.Events;
+    using Suit.AlterationService.Application.CommandHandlers.Validators;
+    using Suit.AlterationService.Application.CommandHandlers.Helpers;
 
     public class CompletePaymentCommandHandler : ICommandHandlerAsync<CompletePaymentCommand>
     {

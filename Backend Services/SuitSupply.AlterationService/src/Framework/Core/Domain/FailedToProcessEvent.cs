@@ -1,7 +1,7 @@
-﻿namespace SuitSupply.Platform.Infrastructure.Domain
+﻿namespace Suit.Platform.Infrastructure.Domain
 {
     using System;
-    using SuitSupply.Platform.Infrastructure.Core.Domain;
+    using Suit.Platform.Infrastructure.Core.Domain;
 
     /// <summary>Event for Agent Creation.</summary>
     public abstract class FailedToProcessEvent : DomainEvent

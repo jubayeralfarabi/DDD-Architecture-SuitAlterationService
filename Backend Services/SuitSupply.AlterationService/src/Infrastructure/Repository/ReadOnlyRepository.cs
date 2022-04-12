@@ -6,7 +6,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SuitSupply.Infrastructure.Repository.RDBRepository
+namespace Suit.Infrastructure.Repository.RDBRepository
 {
     public class ReadOnlyRepository<TContext> : IReadOnlyRepository
     where TContext : DbContext

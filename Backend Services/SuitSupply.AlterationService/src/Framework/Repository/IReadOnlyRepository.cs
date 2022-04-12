@@ -4,7 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
-namespace SuitSupply.Infrastructure.Repository.RDBRepository
+namespace Suit.Infrastructure.Repository.RDBRepository
 {
     public interface IReadOnlyRepository
     {

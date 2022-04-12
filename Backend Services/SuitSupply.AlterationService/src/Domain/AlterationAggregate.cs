@@ -1,14 +1,14 @@
-﻿namespace SuitSupply.AlterationService.Domain
+﻿namespace Suit.AlterationService.Domain
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using SuitSupply.AlterationService.Domain.Aggregates;
-    using SuitSupply.AlterationService.Domain.Entities;
-    using SuitSupply.AlterationService.Domain.Events;
-    using SuitSupply.AlterationService.Domain.ValueObjects;
-    using SuitSupply.Platform.Infrastructure.Core.Domain;
-    using SuitSupply.Platform.Infrastructure.Core.Events;
+    using Suit.AlterationService.Domain.Aggregates;
+    using Suit.AlterationService.Domain.Entities;
+    using Suit.AlterationService.Domain.Events;
+    using Suit.AlterationService.Domain.ValueObjects;
+    using Suit.Platform.Infrastructure.Core.Domain;
+    using Suit.Platform.Infrastructure.Core.Events;
 
     public class AlterationAggregate : AggregateRoot
     {

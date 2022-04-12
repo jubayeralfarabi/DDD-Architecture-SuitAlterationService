@@ -1,4 +1,4 @@
-﻿namespace SuitSupply.AlterationService.Domain.ValueObjects
+﻿namespace Suit.AlterationService.Domain.ValueObjects
 {
     public enum AlterationStatusEnum
     {

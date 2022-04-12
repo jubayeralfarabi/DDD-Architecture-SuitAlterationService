@@ -4,8 +4,8 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-	  <AssemblyName>SuitSupply.AlterationService.APIService</AssemblyName>
-	  <RootNamespace>SuitSupply.AlterationService.APIService</RootNamespace>
+	  <AssemblyName>Suit.AlterationService.APIService</AssemblyName>
+	  <RootNamespace>Suit.AlterationService.APIService</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

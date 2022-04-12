@@ -1,6 +1,6 @@
-﻿namespace SuitSupply.Platform.Infrastructure.Core.Commands
+﻿namespace Suit.Platform.Infrastructure.Core.Commands
 {
-    using SuitSupply.Platform.Infrastructure.Core.Validation;
+    using Suit.Platform.Infrastructure.Core.Validation;
     using System;
     using System.Threading.Tasks;
 

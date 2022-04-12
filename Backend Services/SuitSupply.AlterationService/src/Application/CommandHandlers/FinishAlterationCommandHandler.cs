@@ -1,12 +1,12 @@
-﻿namespace SuitSupply.AlterationService.Application.CommandHandlers
+﻿namespace Suit.AlterationService.Application.CommandHandlers
 {
     using System.Threading.Tasks;
     using Microsoft.Extensions.Logging;
-    using SuitSupply.AlterationService.Application.Commands;
-    using SuitSupply.Platform.Infrastructure.Core.Commands;
-    using SuitSupply.Platform.Infrastructure.Core.Domain;
-    using SuitSupply.AlterationService.Domain;
-    using SuitSupply.AlterationService.Application.CommandHandlers.Helpers;
+    using Suit.AlterationService.Application.Commands;
+    using Suit.Platform.Infrastructure.Core.Commands;
+    using Suit.Platform.Infrastructure.Core.Domain;
+    using Suit.AlterationService.Domain;
+    using Suit.AlterationService.Application.CommandHandlers.Helpers;
 
     public class FinishAlterationCommandHandler : ICommandHandlerAsync<FinishAlterationCommand>
     {

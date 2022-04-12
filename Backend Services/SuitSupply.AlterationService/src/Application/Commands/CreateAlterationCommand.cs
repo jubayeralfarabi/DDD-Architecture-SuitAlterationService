@@ -1,7 +1,7 @@
-﻿namespace SuitSupply.AlterationService.Application.Commands
+﻿namespace Suit.AlterationService.Application.Commands
 {
-    using SuitSupply.AlterationService.Application.Commands.Models;
-    using SuitSupply.Platform.Infrastructure.Core.Commands;
+    using Suit.AlterationService.Application.Commands.Models;
+    using Suit.Platform.Infrastructure.Core.Commands;
     using System;
 
     public class CreateAlterationCommand : Command

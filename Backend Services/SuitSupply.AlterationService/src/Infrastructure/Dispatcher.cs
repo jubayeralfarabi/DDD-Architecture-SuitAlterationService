@@ -1,8 +1,8 @@
-﻿namespace SuitSupply.Platform.Infrastructure.Core
+﻿namespace Suit.Platform.Infrastructure.Core
 {
     using System.Threading.Tasks;
-    using SuitSupply.Platform.Infrastructure.Core.Commands;
-    using SuitSupply.Platform.Infrastructure.Core.Events;
+    using Suit.Platform.Infrastructure.Core.Commands;
+    using Suit.Platform.Infrastructure.Core.Events;
 
     public class Dispatcher : IDispatcher
     {

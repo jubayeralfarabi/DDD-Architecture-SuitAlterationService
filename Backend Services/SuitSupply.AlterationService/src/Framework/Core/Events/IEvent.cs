@@ -1,11 +1,11 @@
-﻿// <copyright file="IEvent.cs" company="SuitSupply">
-// Copyright © 2015-2020 SuitSupply. All Rights Reserved.
+﻿// <copyright file="IEvent.cs" company="Suit">
+// Copyright © 2015-2020 Suit. All Rights Reserved.
 // </copyright>
 
-namespace SuitSupply.Platform.Infrastructure.Core.Events
+namespace Suit.Platform.Infrastructure.Core.Events
 {
     /// <summary>Event Interface.</summary>
-    /// <seealso cref="SuitSupply.Platform.Infrastructure.Core.Bus.IMessage" />
+    /// <seealso cref="Suit.Platform.Infrastructure.Core.Bus.IMessage" />
     public interface IEvent
     {
 

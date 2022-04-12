@@ -1,8 +1,8 @@
-﻿// <copyright file="EventMessageType.cs" company="SuitSupply">
-// Copyright © 2015-2020 SuitSupply. All Rights Reserved.
+﻿// <copyright file="EventMessageType.cs" company="Suit">
+// Copyright © 2015-2020 Suit. All Rights Reserved.
 // </copyright>
 
-namespace SuitSupply.Platform.Infrastructure.Core.Events
+namespace Suit.Platform.Infrastructure.Core.Events
 {
     public enum EventMessageType
     {

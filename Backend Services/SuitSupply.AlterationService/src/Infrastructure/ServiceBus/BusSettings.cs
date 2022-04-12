@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SuitSupply.AlterationService.Infrastructure.ServiceBus
+namespace Suit.AlterationService.Infrastructure.ServiceBus
 {
     public class BusSettings
     {

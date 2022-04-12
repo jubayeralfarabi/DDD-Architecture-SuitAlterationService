@@ -1,16 +1,16 @@
-﻿using SuitSupply.AlterationService.Application.Commands.Models;
-using SuitSupply.AlterationService.Domain;
-using SuitSupply.AlterationService.Domain.Entities;
-using SuitSupply.AlterationService.Domain.Events;
-using SuitSupply.AlterationService.Domain.ValueObjects;
-using SuitSupply.Platform.Infrastructure.Core.Commands;
+﻿using Suit.AlterationService.Application.Commands.Models;
+using Suit.AlterationService.Domain;
+using Suit.AlterationService.Domain.Entities;
+using Suit.AlterationService.Domain.Events;
+using Suit.AlterationService.Domain.ValueObjects;
+using Suit.Platform.Infrastructure.Core.Commands;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SuitSupply.AlterationService.Application.CommandHandlers.Helpers
+namespace Suit.AlterationService.Application.CommandHandlers.Helpers
 {
     public static class CommandHandlerHelper
     {

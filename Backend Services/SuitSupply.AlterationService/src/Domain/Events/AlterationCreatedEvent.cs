@@ -1,9 +1,9 @@
-﻿namespace SuitSupply.AlterationService.Domain.Events
+﻿namespace Suit.AlterationService.Domain.Events
 {
     using System;
-    using SuitSupply.AlterationService.Domain.ValueObjects;
-    using SuitSupply.AlterationService.Domain.Entities;
-    using SuitSupply.Platform.Infrastructure.Core.Domain;
+    using Suit.AlterationService.Domain.ValueObjects;
+    using Suit.AlterationService.Domain.Entities;
+    using Suit.Platform.Infrastructure.Core.Domain;
 
     /// <summary>Event for Alteration Creation.</summary>
     public class AlterationCreatedEvent : DomainEvent

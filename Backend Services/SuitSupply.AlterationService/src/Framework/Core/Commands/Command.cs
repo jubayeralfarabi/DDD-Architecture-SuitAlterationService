@@ -1,10 +1,10 @@
-﻿// <copyright file="Command.cs" company="SuitSupply">
-// Copyright © 2015-2020 SuitSupply. All Rights Reserved.
+﻿// <copyright file="Command.cs" company="Suit">
+// Copyright © 2015-2020 Suit. All Rights Reserved.
 // </copyright>
 
 using System;
 
-namespace SuitSupply.Platform.Infrastructure.Core.Commands
+namespace Suit.Platform.Infrastructure.Core.Commands
 {
 
     public abstract class Command

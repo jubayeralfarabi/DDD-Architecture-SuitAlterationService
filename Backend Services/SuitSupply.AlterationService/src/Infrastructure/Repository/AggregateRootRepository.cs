@@ -1,8 +1,8 @@
-﻿namespace SuitSupply.Platform.Infrastructure.Core.Domain
+﻿namespace Suit.Platform.Infrastructure.Core.Domain
 {
-    using SuitSupply.Infrastructure.Repository.RDBRepository;
-    using SuitSupply.Platform.Infrastructure.Core.Events;
-    using SuitSupply.Platform.Infrastructure.Domain;
+    using Suit.Infrastructure.Repository.RDBRepository;
+    using Suit.Platform.Infrastructure.Core.Events;
+    using Suit.Platform.Infrastructure.Domain;
     using System;
     using System.Collections.Generic;
     using System.Linq;

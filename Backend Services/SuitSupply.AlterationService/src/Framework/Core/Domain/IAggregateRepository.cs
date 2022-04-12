@@ -1,4 +1,4 @@
-﻿namespace SuitSupply.Platform.Infrastructure.Core.Domain
+﻿namespace Suit.Platform.Infrastructure.Core.Domain
 {
     using System;
     using System.Threading.Tasks;

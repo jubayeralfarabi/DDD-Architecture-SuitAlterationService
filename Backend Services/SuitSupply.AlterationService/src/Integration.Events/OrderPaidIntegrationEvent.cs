@@ -1,4 +1,4 @@
-﻿namespace SuitSupply.PaymentService.Integration.Events
+﻿namespace Suit.PaymentService.Integration.Events
 {
     public class OrderPaidIntegrationEvent
     {

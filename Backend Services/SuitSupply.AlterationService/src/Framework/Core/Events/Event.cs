@@ -1,4 +1,4 @@
-﻿namespace SuitSupply.Platform.Infrastructure.Core.Events
+﻿namespace Suit.Platform.Infrastructure.Core.Events
 {
     public class Event : IEvent
     {

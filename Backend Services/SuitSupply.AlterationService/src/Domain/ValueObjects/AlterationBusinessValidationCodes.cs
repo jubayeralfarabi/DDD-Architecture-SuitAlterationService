@@ -1,4 +1,4 @@
-﻿namespace SuitSupply.AlterationService.Domain.Aggregates
+﻿namespace Suit.AlterationService.Domain.Aggregates
 {
     public class AlterationBusinessValidationCodes
     {

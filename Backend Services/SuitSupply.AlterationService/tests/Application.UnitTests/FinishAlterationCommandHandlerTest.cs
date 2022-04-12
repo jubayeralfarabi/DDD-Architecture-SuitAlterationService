@@ -1,10 +1,10 @@
 using Microsoft.Extensions.Logging;
 using Moq;
-using SuitSupply.AlterationService.Application.CommandHandlers;
-using SuitSupply.AlterationService.Application.Commands;
-using SuitSupply.AlterationService.Domain;
-using SuitSupply.Platform.Infrastructure.Core.Commands;
-using SuitSupply.Platform.Infrastructure.Core.Domain;
+using Suit.AlterationService.Application.CommandHandlers;
+using Suit.AlterationService.Application.Commands;
+using Suit.AlterationService.Domain;
+using Suit.Platform.Infrastructure.Core.Commands;
+using Suit.Platform.Infrastructure.Core.Domain;
 using System;
 using System.Threading.Tasks;
 using Xunit;

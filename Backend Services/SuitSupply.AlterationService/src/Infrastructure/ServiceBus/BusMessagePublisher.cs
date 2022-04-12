@@ -1,10 +1,10 @@
 ﻿using Azure.Messaging.ServiceBus;
 using Microsoft.Extensions.Options;
 
-using SuitSupply.Platform.Infrastructure.Core.Events;
+using Suit.Platform.Infrastructure.Core.Events;
 using System.Text.Json;
 
-namespace SuitSupply.AlterationService.Infrastructure.ServiceBus
+namespace Suit.AlterationService.Infrastructure.ServiceBus
 {
     public class BusMessagePublisher : IBusMessagePublisher
     {

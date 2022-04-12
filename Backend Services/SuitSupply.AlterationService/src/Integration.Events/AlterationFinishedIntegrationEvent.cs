@@ -1,4 +1,4 @@
-﻿namespace SuitSupply.AlterationService.Integration.Events
+﻿namespace Suit.AlterationService.Integration.Events
 {
     public class AlterationFinishedIntegrationEvent
     {

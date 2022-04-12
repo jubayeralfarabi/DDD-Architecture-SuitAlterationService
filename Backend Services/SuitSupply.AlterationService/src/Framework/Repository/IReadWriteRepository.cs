@@ -1,4 +1,4 @@
-﻿namespace SuitSupply.Infrastructure.Repository.RDBRepository
+﻿namespace Suit.Infrastructure.Repository.RDBRepository
 {
     using System.Threading.Tasks;
 

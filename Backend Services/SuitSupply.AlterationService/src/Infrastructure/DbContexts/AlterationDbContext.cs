@@ -1,7 +1,7 @@
-﻿namespace SuitSupply.Infrastructure.Repository.RDBRepository.DbContexts
+﻿namespace Suit.Infrastructure.Repository.RDBRepository.DbContexts
 {
     using Microsoft.EntityFrameworkCore;
-    using SuitSupply.AlterationService.Domain;
+    using Suit.AlterationService.Domain;
 
     public class AlterationDbContext : DbContext
     {

@@ -1,12 +1,12 @@
 ﻿using FluentValidation;
-using SuitSupply.AlterationService.Application.Commands;
+using Suit.AlterationService.Application.Commands;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SuitSupply.AlterationService.Application.CommandHandlers.Validators
+namespace Suit.AlterationService.Application.CommandHandlers.Validators
 {
     public class CompletePaymentCommandValidator : AbstractValidator<CompletePaymentCommand>
     {

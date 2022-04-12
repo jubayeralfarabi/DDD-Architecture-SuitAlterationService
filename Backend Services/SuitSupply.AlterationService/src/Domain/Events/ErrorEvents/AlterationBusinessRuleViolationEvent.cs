@@ -1,10 +1,10 @@
-﻿namespace SuitSupply.AlterationService.Domain.Events
+﻿namespace Suit.AlterationService.Domain.Events
 {
     using System;
     using FluentValidation.Results;
     using Newtonsoft.Json;
-    using SuitSupply.Platform.Infrastructure.Core.Events;
-    using SuitSupply.Platform.Infrastructure.Domain;
+    using Suit.Platform.Infrastructure.Core.Events;
+    using Suit.Platform.Infrastructure.Domain;
 
     /// <summary>Event for alteration business violation rule.</summary>
     public class AlterationBusinessRuleViolationEvent : FailedToProcessEvent

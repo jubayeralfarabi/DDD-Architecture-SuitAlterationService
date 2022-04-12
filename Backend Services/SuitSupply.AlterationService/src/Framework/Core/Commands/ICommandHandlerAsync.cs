@@ -1,11 +1,11 @@
-﻿// <copyright file="ICommandHandlerAsync.cs" company="SuitSupply">
-// Copyright © 2015-2020 SuitSupply. All Rights Reserved.
+﻿// <copyright file="ICommandHandlerAsync.cs" company="Suit">
+// Copyright © 2015-2020 Suit. All Rights Reserved.
 // </copyright>
 
-namespace SuitSupply.Platform.Infrastructure.Core.Commands
+namespace Suit.Platform.Infrastructure.Core.Commands
 {
     using System.Threading.Tasks;
-    using SuitSupply.Platform.Infrastructure.Core.Commands;
+    using Suit.Platform.Infrastructure.Core.Commands;
 
     /// <summary>Async command handler generic interface.</summary>
     /// <typeparam name="TCommand">The type of the command.</typeparam>

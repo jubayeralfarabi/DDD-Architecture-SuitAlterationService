@@ -1,7 +1,7 @@
-using SuitSupply.AlterationService.Domain;
-using SuitSupply.AlterationService.Domain.Entities;
-using SuitSupply.AlterationService.Domain.Events;
-using SuitSupply.AlterationService.Domain.ValueObjects;
+using Suit.AlterationService.Domain;
+using Suit.AlterationService.Domain.Entities;
+using Suit.AlterationService.Domain.Events;
+using Suit.AlterationService.Domain.ValueObjects;
 using System;
 using System.Linq;
 using Xunit;

@@ -1,8 +1,8 @@
-﻿// <copyright file="Entity.cs" company="SuitSupply">
-// Copyright © 2015-2020 SuitSupply. All Rights Reserved.
+﻿// <copyright file="Entity.cs" company="Suit">
+// Copyright © 2015-2020 Suit. All Rights Reserved.
 // </copyright>
 
-namespace SuitSupply.Platform.Infrastructure.Domain
+namespace Suit.Platform.Infrastructure.Domain
 {
     using System;
     using System.ComponentModel.DataAnnotations;

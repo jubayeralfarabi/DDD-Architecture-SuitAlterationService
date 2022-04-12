@@ -1,12 +1,12 @@
-﻿namespace SuitSupply.AlterationService.Read.EventHandlers
+﻿namespace Suit.AlterationService.Read.EventHandlers
 {
     using System.Threading.Tasks;
     using Microsoft.Extensions.Logging;
     using Newtonsoft.Json;
-    using SuitSupply.AlterationService.Domain.Events;
-    using SuitSupply.AlterationService.Infrastructure.ServiceBus;
-    using SuitSupply.AlterationService.Integration.Events;
-    using SuitSupply.Platform.Infrastructure.Core.Events;
+    using Suit.AlterationService.Domain.Events;
+    using Suit.AlterationService.Infrastructure.ServiceBus;
+    using Suit.AlterationService.Integration.Events;
+    using Suit.Platform.Infrastructure.Core.Events;
 
     public class AlterationFinishedEventHandler : IEventHandlerAsync<AlterationFinishedEvent>
     {

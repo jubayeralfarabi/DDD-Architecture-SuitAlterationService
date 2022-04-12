@@ -1,19 +1,19 @@
-﻿using SuitSupply.AlterationService.Integration.AzureFunc;
+﻿using Suit.AlterationService.Integration.AzureFunc;
 using Microsoft.Azure.Functions.Extensions.DependencyInjection;
-using SuitSupply.Platform.Infrastructure.Extensions;
+using Suit.Platform.Infrastructure.Extensions;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
-using SuitSupply.Infrastructure.Repository.RDBRepository.DbContexts;
+using Suit.Infrastructure.Repository.RDBRepository.DbContexts;
 using Microsoft.EntityFrameworkCore;
-using SuitSupply.AlterationService.Application.Commands;
-using SuitSupply.AlterationService.Application.CommandHandlers;
-using SuitSupply.Platform.Infrastructure.Core.Commands;
-using SuitSupply.Platform.Infrastructure.Core.Domain;
-using SuitSupply.AlterationService.Domain;
+using Suit.AlterationService.Application.Commands;
+using Suit.AlterationService.Application.CommandHandlers;
+using Suit.Platform.Infrastructure.Core.Commands;
+using Suit.Platform.Infrastructure.Core.Domain;
+using Suit.AlterationService.Domain;
 
 [assembly: FunctionsStartup(typeof(Startup))]
 
-namespace SuitSupply.AlterationService.Integration.AzureFunc
+namespace Suit.AlterationService.Integration.AzureFunc
 {
     public class Startup : FunctionsStartup
     {

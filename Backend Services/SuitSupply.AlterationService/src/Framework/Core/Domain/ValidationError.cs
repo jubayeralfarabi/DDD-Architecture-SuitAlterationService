@@ -1,4 +1,4 @@
-﻿namespace SuitSupply.Platform.Infrastructure.Core.Validation
+﻿namespace Suit.Platform.Infrastructure.Core.Validation
 {
     using System.Collections.Generic;
     using System.Linq;

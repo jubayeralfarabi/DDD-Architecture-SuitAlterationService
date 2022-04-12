@@ -4,8 +4,8 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-	  <AssemblyName>SuitSupply.AlterationService.Infrastructure</AssemblyName>
-	  <RootNamespace>SuitSupply.AlterationService.Infrastructure</RootNamespace>
+	  <AssemblyName>Suit.AlterationService.Infrastructure</AssemblyName>
+	  <RootNamespace>Suit.AlterationService.Infrastructure</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

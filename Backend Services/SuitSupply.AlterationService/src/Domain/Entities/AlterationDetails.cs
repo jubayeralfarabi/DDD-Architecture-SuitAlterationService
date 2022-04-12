@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SuitSupply.AlterationService.Domain.ValueObjects;
+using Suit.AlterationService.Domain.ValueObjects;
 using System.ComponentModel.DataAnnotations;
 
-namespace SuitSupply.AlterationService.Domain.Entities
+namespace Suit.AlterationService.Domain.Entities
 {
     
     public class AlterationDetails

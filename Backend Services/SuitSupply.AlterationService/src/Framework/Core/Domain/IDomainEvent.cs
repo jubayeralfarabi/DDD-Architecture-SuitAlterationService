@@ -1,6 +1,6 @@
-﻿namespace SuitSupply.Platform.Infrastructure.Core.Domain
+﻿namespace Suit.Platform.Infrastructure.Core.Domain
 {
-    using SuitSupply.Platform.Infrastructure.Core.Events;
+    using Suit.Platform.Infrastructure.Core.Events;
     using System;
 
     public interface IDomainEvent : IEvent

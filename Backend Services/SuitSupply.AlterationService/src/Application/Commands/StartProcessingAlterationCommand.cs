@@ -1,6 +1,6 @@
-﻿namespace SuitSupply.AlterationService.Application.Commands
+﻿namespace Suit.AlterationService.Application.Commands
 {
-    using SuitSupply.Platform.Infrastructure.Core.Commands;
+    using Suit.Platform.Infrastructure.Core.Commands;
     using System;
 
     public class StartProcessingAlterationCommand : Command
