@@ -3,6 +3,7 @@ This repo includes 3 backend services and 1 Azure Funtion written on c# .Net 6 a
 State repository implemented.
 
 **Tools used:** Azure SQL Database, Azure Service Bus, Azure Application Insight, Azure AppService, Azure Function
+
 Development Duration: 30 hours
 
 # Swagger Url
