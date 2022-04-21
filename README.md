@@ -1,5 +1,5 @@
 # Alteration System Introduction 
-This repo includes 3 backend services and 1 Azure Funtion written on c# .Net 6 and maintaining DDD architecture.
+This project is an example of DDD architecture that includes 3 backend services and 1 Azure Funtion written on c# .Net 6.
 State repository implemented for DDD.
 
 **Tools used:** Azure SQL Database, Azure Service Bus, Azure Application Insight, Azure AppService, Azure Function
